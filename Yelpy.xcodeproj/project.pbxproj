@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		DD05504525DD85CB0069D612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD05504425DD85CB0069D612 /* AppDelegate.swift */; };
 		DD05504725DD85CB0069D612 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD05504625DD85CB0069D612 /* SceneDelegate.swift */; };
-		DD05504925DD85CB0069D612 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD05504825DD85CB0069D612 /* ViewController.swift */; };
+		DD05504925DD85CB0069D612 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD05504825DD85CB0069D612 /* HomeViewController.swift */; };
 		DD05504C25DD85CB0069D612 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD05504A25DD85CB0069D612 /* Main.storyboard */; };
 		DD05504E25DD85CB0069D612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD05504D25DD85CB0069D612 /* Assets.xcassets */; };
 		DD05505125DD85CB0069D612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD05504F25DD85CB0069D612 /* LaunchScreen.storyboard */; };
+		DD05505F25DD8A2A0069D612 /* HomeBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD05505E25DD8A2A0069D612 /* HomeBrain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DD05504125DD85CB0069D612 /* Yelpy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yelpy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD05504425DD85CB0069D612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD05504625DD85CB0069D612 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DD05504825DD85CB0069D612 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DD05504825DD85CB0069D612 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DD05504B25DD85CB0069D612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DD05504D25DD85CB0069D612 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DD05505025DD85CB0069D612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD05505225DD85CB0069D612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD05505E25DD8A2A0069D612 /* HomeBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBrain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +60,38 @@
 			children = (
 				DD05504425DD85CB0069D612 /* AppDelegate.swift */,
 				DD05504625DD85CB0069D612 /* SceneDelegate.swift */,
-				DD05504825DD85CB0069D612 /* ViewController.swift */,
-				DD05504A25DD85CB0069D612 /* Main.storyboard */,
+				DD05505D25DD8A040069D612 /* Model */,
+				DD05505C25DD89FC0069D612 /* View */,
+				DD05505A25DD89F40069D612 /* Controller */,
 				DD05504D25DD85CB0069D612 /* Assets.xcassets */,
 				DD05504F25DD85CB0069D612 /* LaunchScreen.storyboard */,
 				DD05505225DD85CB0069D612 /* Info.plist */,
 			);
 			path = Yelpy;
+			sourceTree = "<group>";
+		};
+		DD05505A25DD89F40069D612 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DD05504825DD85CB0069D612 /* HomeViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DD05505C25DD89FC0069D612 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DD05504A25DD85CB0069D612 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DD05505D25DD8A040069D612 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DD05505E25DD8A2A0069D612 /* HomeBrain.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,9 +164,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD05504925DD85CB0069D612 /* ViewController.swift in Sources */,
+				DD05504925DD85CB0069D612 /* HomeViewController.swift in Sources */,
 				DD05504525DD85CB0069D612 /* AppDelegate.swift in Sources */,
 				DD05504725DD85CB0069D612 /* SceneDelegate.swift in Sources */,
+				DD05505F25DD8A2A0069D612 /* HomeBrain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
