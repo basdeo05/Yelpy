@@ -16,6 +16,8 @@
 		DD05505F25DD8A2A0069D612 /* HomeBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD05505E25DD8A2A0069D612 /* HomeBrain.swift */; };
 		DDA86FBB25DD923D001123F1 /* JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA86FBA25DD923D001123F1 /* JsonParse.swift */; };
 		DDA86FBE25DD9408001123F1 /* BusinessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA86FBD25DD9408001123F1 /* BusinessObject.swift */; };
+		DDA86FC225DDB66E001123F1 /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA86FC025DDB66E001123F1 /* BusinessCell.swift */; };
+		DDA86FC325DDB66E001123F1 /* BusinessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA86FC125DDB66E001123F1 /* BusinessCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		DD05505E25DD8A2A0069D612 /* HomeBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBrain.swift; sourceTree = "<group>"; };
 		DDA86FBA25DD923D001123F1 /* JsonParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParse.swift; sourceTree = "<group>"; };
 		DDA86FBD25DD9408001123F1 /* BusinessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessObject.swift; sourceTree = "<group>"; };
+		DDA86FC025DDB66E001123F1 /* BusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
+		DDA86FC125DDB66E001123F1 /* BusinessCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusinessCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +90,8 @@
 			isa = PBXGroup;
 			children = (
 				DD05504A25DD85CB0069D612 /* Main.storyboard */,
+				DDA86FC025DDB66E001123F1 /* BusinessCell.swift */,
+				DDA86FC125DDB66E001123F1 /* BusinessCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -158,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DD05505125DD85CB0069D612 /* LaunchScreen.storyboard in Resources */,
+				DDA86FC325DDB66E001123F1 /* BusinessCell.xib in Resources */,
 				DD05504E25DD85CB0069D612 /* Assets.xcassets in Resources */,
 				DD05504C25DD85CB0069D612 /* Main.storyboard in Resources */,
 			);
@@ -170,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDA86FC225DDB66E001123F1 /* BusinessCell.swift in Sources */,
 				DDA86FBB25DD923D001123F1 /* JsonParse.swift in Sources */,
 				DD05504925DD85CB0069D612 /* HomeViewController.swift in Sources */,
 				DD05504525DD85CB0069D612 /* AppDelegate.swift in Sources */,

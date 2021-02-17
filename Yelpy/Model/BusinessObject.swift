@@ -13,4 +13,5 @@ struct BusinessObject {
     let businessImage_url: String
     let businessAlias: String
     let businessTitle: String
+    let businessPhoneNumber: String
 }

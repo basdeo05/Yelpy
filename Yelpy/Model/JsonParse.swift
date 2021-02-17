@@ -19,6 +19,7 @@ struct businesses: Codable {
     let name: String
     let image_url: String
     let categories: [categories]
+    let phone: String
 }
 
 struct categories: Codable {

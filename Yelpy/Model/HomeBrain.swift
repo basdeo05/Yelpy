@@ -72,7 +72,8 @@ class HomeBrain {
                     businessReview_count: object.review_count,
                     businessImage_url: object.image_url,
                     businessAlias: object.categories[0].alias,
-                    businessTitle: object.categories[0].title)
+                    businessTitle: object.categories[0].title,
+                    businessPhoneNumber: object.phone)
                 
                 allBusiness.append(newObject)
             }

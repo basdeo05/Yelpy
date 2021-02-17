@@ -36,6 +36,9 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         homeBrain.delegate = self
         
+        //register custom cell with tableView
+        tableView.register(UINib(nibName: "BusinessCell", bundle: nil), forCellReuseIdentifier: "BusinessCell")
+        
     }
 }
 
@@ -68,8 +71,38 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = homeBrain.allBusiness[indexPath.row].businessName
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BusinessCell") as! BusinessCell
+        cell.businessNameLabel.text = homeBrain.allBusiness[indexPath.row].businessName
+        cell.categoryLabel.text = homeBrain.allBusiness[indexPath.row].businessAlias
+        cell.numberOfReviewsLabel.text = String(homeBrain.allBusiness[indexPath.row].businessReview_count)
+        cell.phoneNumberLabel.text = homeBrain.allBusiness[indexPath.row].businessPhoneNumber
+        
+        switch homeBrain.allBusiness[indexPath.row].businessRating {
+        case 0.0:
+            cell.starRatingImage.image = UIImage(named: "extra_large_0")
+        case 1.0:
+            cell.starRatingImage.image = UIImage(named: "extra_large_1")
+        case 1.5:
+            cell.starRatingImage.image = UIImage(named: "extra_large_1_half")
+        case 2.0:
+            cell.starRatingImage.image = UIImage(named: "extra_large_2")
+        case 2.5:
+            cell.starRatingImage.image = UIImage(named: "extra_large_2_half")
+        case 3.0:
+            cell.starRatingImage.image = UIImage(named: "extra_large_3")
+        case 3.5:
+            cell.starRatingImage.image = UIImage(named: "extra_large_3_half")
+        case 4.0:
+            cell.starRatingImage.image = UIImage(named: "extra_large_4")
+        case 4.5:
+            cell.starRatingImage.image = UIImage(named: "extra_large_4_half")
+        case 5.0:
+            cell.starRatingImage.image = UIImage(named: "extra_large_5")
+        default:
+            cell.starRatingImage.image = UIImage(named: "extra_large_0")
+        }
+       
+        
         return cell
     }
 }
