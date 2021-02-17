@@ -14,6 +14,8 @@
 		DD05504E25DD85CB0069D612 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD05504D25DD85CB0069D612 /* Assets.xcassets */; };
 		DD05505125DD85CB0069D612 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD05504F25DD85CB0069D612 /* LaunchScreen.storyboard */; };
 		DD05505F25DD8A2A0069D612 /* HomeBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD05505E25DD8A2A0069D612 /* HomeBrain.swift */; };
+		DDA86FBB25DD923D001123F1 /* JsonParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA86FBA25DD923D001123F1 /* JsonParse.swift */; };
+		DDA86FBE25DD9408001123F1 /* BusinessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA86FBD25DD9408001123F1 /* BusinessObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		DD05505025DD85CB0069D612 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD05505225DD85CB0069D612 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD05505E25DD8A2A0069D612 /* HomeBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBrain.swift; sourceTree = "<group>"; };
+		DDA86FBA25DD923D001123F1 /* JsonParse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParse.swift; sourceTree = "<group>"; };
+		DDA86FBD25DD9408001123F1 /* BusinessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 			isa = PBXGroup;
 			children = (
 				DD05505E25DD8A2A0069D612 /* HomeBrain.swift */,
+				DDA86FBA25DD923D001123F1 /* JsonParse.swift */,
+				DDA86FBD25DD9408001123F1 /* BusinessObject.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -164,9 +170,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDA86FBB25DD923D001123F1 /* JsonParse.swift in Sources */,
 				DD05504925DD85CB0069D612 /* HomeViewController.swift in Sources */,
 				DD05504525DD85CB0069D612 /* AppDelegate.swift in Sources */,
 				DD05504725DD85CB0069D612 /* SceneDelegate.swift in Sources */,
+				DDA86FBE25DD9408001123F1 /* BusinessObject.swift in Sources */,
 				DD05505F25DD8A2A0069D612 /* HomeBrain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
