@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import AlamofireImage
 
 class HomeViewController: UIViewController {
 
@@ -101,6 +102,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             cell.starRatingImage.image = UIImage(named: "extra_large_0")
         }
+        
+        if let imageUrl = URL(string: homeBrain.allBusiness[indexPath.row].businessImage_url){
+            cell.busninessPictureImageView.af.setImage(withURL: imageUrl)
+        }
+        
        
         
         return cell

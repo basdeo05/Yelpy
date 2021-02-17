@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8029DC502C8106BA323F28BD /* Pods_Yelpy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF96D825BF3A5FD7347BD86 /* Pods_Yelpy.framework */; };
 		DD05504525DD85CB0069D612 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD05504425DD85CB0069D612 /* AppDelegate.swift */; };
 		DD05504725DD85CB0069D612 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD05504625DD85CB0069D612 /* SceneDelegate.swift */; };
 		DD05504925DD85CB0069D612 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD05504825DD85CB0069D612 /* HomeViewController.swift */; };
@@ -21,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A0CD939BFE5A44C9B1F23737 /* Pods-Yelpy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yelpy.release.xcconfig"; path = "Target Support Files/Pods-Yelpy/Pods-Yelpy.release.xcconfig"; sourceTree = "<group>"; };
+		ABF96D825BF3A5FD7347BD86 /* Pods_Yelpy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yelpy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC1EB0BDF5F6B11E4EC7991C /* Pods-Yelpy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yelpy.debug.xcconfig"; path = "Target Support Files/Pods-Yelpy/Pods-Yelpy.debug.xcconfig"; sourceTree = "<group>"; };
 		DD05504125DD85CB0069D612 /* Yelpy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yelpy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD05504425DD85CB0069D612 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DD05504625DD85CB0069D612 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,17 +45,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8029DC502C8106BA323F28BD /* Pods_Yelpy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32C63721404C56D0F26A6EA6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ABF96D825BF3A5FD7347BD86 /* Pods_Yelpy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AAA4D8E51AD85747B7705937 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BC1EB0BDF5F6B11E4EC7991C /* Pods-Yelpy.debug.xcconfig */,
+				A0CD939BFE5A44C9B1F23737 /* Pods-Yelpy.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		DD05503825DD85CB0069D612 = {
 			isa = PBXGroup;
 			children = (
 				DD05504325DD85CB0069D612 /* Yelpy */,
 				DD05504225DD85CB0069D612 /* Products */,
+				AAA4D8E51AD85747B7705937 /* Pods */,
+				32C63721404C56D0F26A6EA6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,9 +138,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD05505525DD85CB0069D612 /* Build configuration list for PBXNativeTarget "Yelpy" */;
 			buildPhases = (
+				B746E128C4B9D8FC59430456 /* [CP] Check Pods Manifest.lock */,
 				DD05503D25DD85CB0069D612 /* Sources */,
 				DD05503E25DD85CB0069D612 /* Frameworks */,
 				DD05503F25DD85CB0069D612 /* Resources */,
+				8A480BE09BDC1771397FA25A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -171,6 +198,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8A480BE09BDC1771397FA25A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Yelpy/Pods-Yelpy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Yelpy/Pods-Yelpy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Yelpy/Pods-Yelpy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B746E128C4B9D8FC59430456 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Yelpy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DD05503D25DD85CB0069D612 /* Sources */ = {
@@ -327,6 +396,7 @@
 		};
 		DD05505625DD85CB0069D612 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC1EB0BDF5F6B11E4EC7991C /* Pods-Yelpy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -346,6 +416,7 @@
 		};
 		DD05505725DD85CB0069D612 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0CD939BFE5A44C9B1F23737 /* Pods-Yelpy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
