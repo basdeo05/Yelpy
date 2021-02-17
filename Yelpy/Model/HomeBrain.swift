@@ -6,6 +6,13 @@
 //
 
 import Foundation
+
+protocol HomeBrainDelegate {
+    func updateUI (_ homeBrain: HomeBrain)
+    func didFailWithError (error: Error)
+}
+
+
 class HomeBrain {
     
     //my api key
@@ -14,6 +21,10 @@ class HomeBrain {
     //hold all the business after the api call
     var allBusiness = [BusinessObject]()
     
+    //delegate
+    var delegate: HomeBrainDelegate?
+    
+    //perform api request to get business near my current location
     func perfromApiReqest (lattitude: String, longtitude: String){
         
         //create the url
@@ -41,7 +52,7 @@ class HomeBrain {
                 if let safeData = data {
                     //let returnedData = String(data: safeData, encoding: .utf8)
                     self.parseJson(apiData: safeData)
-                    print(self.allBusiness.count)
+                    self.delegate?.updateUI(self)
                 }
             }
             //perform the request

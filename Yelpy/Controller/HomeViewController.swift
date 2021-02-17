@@ -15,6 +15,10 @@ class HomeViewController: UIViewController {
     //Create location object
     let locationManager = CLLocationManager()
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -28,9 +32,14 @@ class HomeViewController: UIViewController {
         //get users current location
         locationManager.requestLocation()
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        homeBrain.delegate = self
+        
     }
 }
 
+//get current user location
 extension HomeViewController: CLLocationManagerDelegate {
     
     //returns an array of locations
@@ -44,8 +53,6 @@ extension HomeViewController: CLLocationManagerDelegate {
             let lat = location.coordinate.latitude
             let stringLon = String(lon)
             let stringLat = String(lat)
-            //weatherManger.fetchWeather(longitutde: lon, Latitude: lat)
-            print ("Longitute: \(lon), latitutde: \(lat)")
             homeBrain.perfromApiReqest(lattitude: stringLat, longtitude: stringLon)
         }
     }
@@ -54,3 +61,29 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
 }
 
+//customize the table view
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return homeBrain.allBusiness.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = homeBrain.allBusiness[indexPath.row].businessName
+        return cell
+    }
+}
+
+//delegates to pass data from home brain
+extension HomeViewController: HomeBrainDelegate {
+    func updateUI (_ homeBrain: HomeBrain) {
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func didFailWithError(error: Error) {
+        print ("There was an error !")
+    }
+}
