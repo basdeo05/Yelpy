@@ -74,7 +74,7 @@ class HomeBrain {
                     businessRating: object.rating,
                     businessReview_count: object.review_count,
                     businessImage_url: object.image_url,
-                    businessAlias: object.categories[0].alias,
+                    businessAlias: object.categories[0].alias.capitalized,
                     businessTitle: object.categories[0].title,
                     businessPhoneNumber: object.phone)
                 

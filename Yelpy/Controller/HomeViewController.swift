@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
     
     var stringLon = ""
     var stringLat = ""
+    var shouldContinousScroll = true
     
     
     override func viewDidLoad() {
@@ -39,6 +40,7 @@ class HomeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         homeBrain.delegate = self
+        searchBar.delegate = self
         
         //register custom cell with tableView
         tableView.register(UINib(nibName: "BusinessCell", bundle: nil), forCellReuseIdentifier: "BusinessCell")
@@ -114,14 +116,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        print (indexPath.row)
-        if indexPath.row  == homeBrain.allBusiness.count - 1 {
-            homeBrain.numberOfBusinessToDisplay += 20
+
+        //print (indexPath.row)
+        if (indexPath.row  == homeBrain.allBusiness.count - 1 && shouldContinousScroll == true) {
+            homeBrain.numberOfBusinessToDisplay += 5
             homeBrain.perfromApiReqest(lattitude: stringLat, longtitude: stringLon)
             }
-        
+
     }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.resignFirstResponder()
+    }
+    
 }
 
 //delegates to pass data from home brain
@@ -136,4 +143,148 @@ extension HomeViewController: HomeBrainDelegate {
     func didFailWithError(error: Error) {
         print ("There was an error !")
     }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    
+    //Search button clicked function
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        //get rid of keyboard
+        searchBar.endEditing(true)
+        
+        //if no text get rif of keyboard and hide cancel button
+        if (searchBar.text == ""){
+            searchBar.showsCancelButton = false
+            searchBar.endEditing(true)
+        }
+        
+        else {
+            
+            //get search bar text
+            if let searchBatText = searchBar.text {
+                
+                //hold results
+                var tempArray  = [BusinessObject]()
+                
+                //go through array and see if any matches
+                for aBusiness in homeBrain.allBusiness {
+                    
+                    //if matches put the business in the temp array
+                    if (aBusiness.businessName.contains(searchBatText) ||
+                            aBusiness.businessAlias.contains(searchBatText)){
+                        tempArray.append(aBusiness)
+                    }
+                }
+                
+                //get rid of keyboard
+                searchBar.endEditing(true)
+                
+                //get rid of all business
+                homeBrain.allBusiness.removeAll()
+                
+                //set all business to business that match the result
+                homeBrain.allBusiness = tempArray
+                
+                //stop continous scrolling because will onnly have a set results
+                shouldContinousScroll = false
+                
+                //reload tableview and go to starting cell
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    
+                }
+                
+            }
+        }
+    }
+    
+    //update results per character
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    
+        //if no text get rif of keyboard and hide cancel button
+        if (searchBar.text == ""){
+            searchBar.showsCancelButton = false
+            searchBar.endEditing(true)
+            homeBrain.perfromApiReqest(lattitude: stringLat, longtitude: stringLon)
+        }
+        
+        else {
+            
+            //get search bar text
+            if let searchBatText = searchBar.text {
+                
+                //hold results
+                var tempArray = [BusinessObject]()
+                
+                //go through array and see if any matches
+                for aBusiness in homeBrain.allBusiness {
+                    
+                    //if matches put the business in the temp array
+                    if (aBusiness.businessName.contains(searchBatText) ||
+                            aBusiness.businessAlias.contains(searchBatText)){
+                        tempArray.append(aBusiness)
+                    }
+                }
+                
+                //get rid of all business
+                homeBrain.allBusiness.removeAll()
+                
+                //set all business to business that match the result
+                homeBrain.allBusiness = tempArray
+                
+                //stop continous scrolling because will onnly have a set results
+                shouldContinousScroll = false
+                
+                //reload tableview and go to starting cell
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    if (self.homeBrain.allBusiness.count > 0){
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    }
+                    
+                }
+                
+            }
+        }
+    }
+    
+    
+    
+    //if user clicked cancel button clear textfield
+    //get rid of keyboard
+    //get original list of businesses
+    //let user to continue endless scroll
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        homeBrain.perfromApiReqest(lattitude: stringLat, longtitude: stringLon)
+        shouldContinousScroll = true
+    }
+    
+    //once start editing show cancel button
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        return true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+    }
+    
+    //only begin searching when there are business in the array
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        if (homeBrain.allBusiness.count == 0){
+            return false
+        }
+        return true
+    }
+    
 }
