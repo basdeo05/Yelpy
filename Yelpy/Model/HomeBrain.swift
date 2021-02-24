@@ -24,11 +24,13 @@ class HomeBrain {
     //delegate
     var delegate: HomeBrainDelegate?
     
+    var numberOfBusinessToDisplay = 20
+    
     //perform api request to get business near my current location
     func perfromApiReqest (lattitude: String, longtitude: String){
         
         //create the url
-        let theURL = "https://api.yelp.com/v3/businesses/search?latitude=\(lattitude)&longitude=\(longtitude)"
+        let theURL = "https://api.yelp.com/v3/businesses/search?latitude=\(lattitude)&longitude=\(longtitude)&categories=restaurants&limit=\(numberOfBusinessToDisplay)"
         
         //convert string url to actual url
         if let URL = URL(string: theURL){
@@ -65,6 +67,7 @@ class HomeBrain {
         let decoder = JSONDecoder()
         do{
             let decodedData = try decoder.decode(yelpReturnedBusinesses.self, from: apiData)
+            allBusiness.removeAll()
             for object in decodedData.businesses {
                 let newObject = BusinessObject(
                     businessName: object.name,

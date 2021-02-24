@@ -19,6 +19,9 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     
+    var stringLon = ""
+    var stringLat = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +58,8 @@ extension HomeViewController: CLLocationManagerDelegate {
             locationManager.stopUpdatingLocation()
             let lon = location.coordinate.longitude
             let lat = location.coordinate.latitude
-            let stringLon = String(lon)
-            let stringLat = String(lat)
+            stringLon = String(lon)
+            stringLat = String(lat)
             homeBrain.perfromApiReqest(lattitude: stringLat, longtitude: stringLon)
         }
     }
@@ -107,9 +110,17 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.busninessPictureImageView.af.setImage(withURL: imageUrl)
         }
         
-       
-        
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        print (indexPath.row)
+        if indexPath.row  == homeBrain.allBusiness.count - 1 {
+            homeBrain.numberOfBusinessToDisplay += 20
+            homeBrain.perfromApiReqest(lattitude: stringLat, longtitude: stringLon)
+            }
+        
     }
 }
 
