@@ -9,6 +9,10 @@ import UIKit
 import CoreLocation
 import AlamofireImage
 
+protocol recieveFilterProtocol {
+    func setData(filterRecieved: FilterObject)
+}
+
 class HomeViewController: UIViewController {
 
     //connect controller to model
@@ -22,6 +26,19 @@ class HomeViewController: UIViewController {
     var stringLon = ""
     var stringLat = ""
     var shouldContinousScroll = true
+    
+    let k = K()
+    
+    var filterObject: FilterObject? {
+        didSet{
+            print(filterObject?.oneMile)
+            print(filterObject?.threeMile)
+            print(filterObject?.fiveMile)
+            print(filterObject?.openNow)
+            print(filterObject?.price)
+        }
+    
+    }
     
     
     override func viewDidLoad() {
@@ -45,6 +62,17 @@ class HomeViewController: UIViewController {
         //register custom cell with tableView
         tableView.register(UINib(nibName: "BusinessCell", bundle: nil), forCellReuseIdentifier: "BusinessCell")
         
+        
+        
+    }
+    
+    @IBAction func filterButtonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: k.homeToFilter, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! FilterViewController
+        destinationVC.delegate = self
     }
 }
 
@@ -287,4 +315,10 @@ extension HomeViewController: UISearchBarDelegate {
         return true
     }
     
+}
+
+extension HomeViewController: recieveFilterProtocol{
+    func setData(filterRecieved: FilterObject) {
+        filterObject = filterRecieved
+    }
 }
