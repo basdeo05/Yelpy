@@ -335,13 +335,32 @@ extension HomeViewController: UISearchBarDelegate {
                 shouldContinousScroll = false
                 
                 //reload tableview and go to starting cell
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    let indexPath = IndexPath(row: 0, section: 0)
-                    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-                    
+                if (homeBrain.allBusiness.count > 0){
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                        let indexPath = IndexPath(row: 0, section: 0)
+                        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                        
+                    }
                 }
-                
+                else {
+                    DispatchQueue.main.async {
+                        
+                        let alert = UIAlertController(title: "No Results found", message: "", preferredStyle: .alert)
+                        
+                        let action = UIAlertAction(title: "Start New Search", style: .default) { (action) in
+                            
+                            self.homeBrain.perfromApiReqest(lattitude: self.stringLat, longtitude: self.stringLon)
+                            searchBar.showsCancelButton = false
+                            searchBar.text = ""
+                            self.shouldContinousScroll = true
+                        }
+                        
+                        alert.addAction(action)
+                        self.present(alert, animated: true, completion: nil)
+
+                    }
+                }
             }
         }
     }
