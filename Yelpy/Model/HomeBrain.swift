@@ -15,6 +15,8 @@ protocol HomeBrainDelegate {
 
 class HomeBrain {
     
+    let k = K()
+    
     //my api key
     let api_key = "CP9_jrQkdu75k7PrDjMeIdmxai0GAAI75xNNshYwCQelUs5eIoDu8qk9YzAcNBj7F_MlJVT1jK8C0fYgmqGDEahMkG3sbjs2GyQXStsgnmDqyGpSUE-WldpbwrIqYHYx"
     
@@ -30,7 +32,48 @@ class HomeBrain {
     func perfromApiReqest (lattitude: String, longtitude: String){
         
         //create the url
-        let theURL = "https://api.yelp.com/v3/businesses/search?latitude=\(lattitude)&longitude=\(longtitude)&categories=restaurants&limit=\(numberOfBusinessToDisplay)"
+        var theURL = "https://api.yelp.com/v3/businesses/search?latitude=\(lattitude)&longitude=\(longtitude)&categories=restaurants&limit=\(numberOfBusinessToDisplay)"
+        
+        
+//        //check to see if filters are applied
+//        if (UserDefaults.standard.bool(forKey: k.hasFilterBeenApplied)){
+//
+//            //check to see if price filter
+//            if (UserDefaults.standard.integer(forKey: k.priceFilter) > 0){
+//                theURL += "&price=\(String(UserDefaults.standard.integer(forKey: k.priceFilter)))"
+//            }
+//
+//
+//
+//
+//
+//        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         //convert string url to actual url
         if let URL = URL(string: theURL){
