@@ -25,31 +25,70 @@ class FilterViewController: UIViewController {
     @IBOutlet weak var fiveMileOutlet: UISwitch!
     @IBOutlet weak var openNowOutlet: UISwitch!
     @IBOutlet weak var priceOutlet: UISegmentedControl!
-    var filter: FilterObject?
-    var delegate: recieveFilterProtocol?
+    let k = K()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
-        if let filterChosen = filter {
-            delegate?.setData(filterRecieved: filterChosen)
+        if (UserDefaults.standard.bool(forKey: k.oneMileFilter)){
+            oneMileOutlet.isOn = true
         }
+        if (UserDefaults.standard.bool(forKey: k.threeMileFilter)){
+            threeMileOutlet.isOn = true
+        }
+        if (UserDefaults.standard.bool(forKey: k.fiveMileFilter)){
+            fiveMileOutlet.isOn = true
+        }
+        if (UserDefaults.standard.bool(forKey: k.openNowFilter)){
+            openNowOutlet.isOn = true
+        }
+        if (UserDefaults.standard.integer(forKey: k.priceFilter) > 0){
+            priceOutlet.selectedSegmentIndex = UserDefaults.standard.integer(forKey: k.priceFilter)
+        }
+
+        
+        
         
     }
     
     @IBAction func filterButtonPressed(_ sender: UIButton) {
         
-        filter = FilterObject(oneMile: oneMileOutlet.isOn,
-                                  threeMile: threeMileOutlet.isOn,
-                                  fiveMile: fiveMileOutlet.isOn,
-                                  openNow: openNowOutlet.isOn,
-                                  price: priceOutlet.selectedSegmentIndex)
-
+        UserDefaults.standard.set(oneMileOutlet.isOn, forKey: k.oneMileFilter)
+        UserDefaults.standard.set(threeMileOutlet.isOn, forKey: k.threeMileFilter)
+        UserDefaults.standard.set(fiveMileOutlet.isOn, forKey: k.fiveMileFilter)
+        UserDefaults.standard.set(openNowOutlet.isOn, forKey: k.openNowFilter)
+        UserDefaults.standard.set(priceOutlet.selectedSegmentIndex, forKey: k.priceFilter)
+        
+        if (oneMileOutlet.isOn ||
+                threeMileOutlet.isOn ||
+                fiveMileOutlet.isOn ||
+                openNowOutlet.isOn ||
+                priceOutlet.selectedSegmentIndex != 0){
+            
+            UserDefaults.standard.set(true, forKey: k.hasFilterBeenApplied)
+        }
         dismiss(animated: true, completion: nil)
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //This is how to pass data between view controllers using delegation
+//    override func viewWillDisappear(_ animated: Bool) {
+//
+//        if let filterChosen = filter {
+//            delegate?.setData(filterRecieved: filterChosen)
+//        }
+//
+//    }
+//  var delegate: recieveFilterProtocol?
 }

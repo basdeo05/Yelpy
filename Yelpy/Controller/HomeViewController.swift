@@ -9,9 +9,10 @@ import UIKit
 import CoreLocation
 import AlamofireImage
 
-protocol recieveFilterProtocol {
-    func setData(filterRecieved: FilterObject)
-}
+//Creating protocol to pass data between viewControllers using delegation
+//protocol recieveFilterProtocol {
+//    func setData(filterRecieved: FilterObject)
+//}
 
 class HomeViewController: UIViewController {
 
@@ -28,17 +29,6 @@ class HomeViewController: UIViewController {
     var shouldContinousScroll = true
     
     let k = K()
-    
-    var filterObject: FilterObject? {
-        didSet{
-            print(filterObject?.oneMile)
-            print(filterObject?.threeMile)
-            print(filterObject?.fiveMile)
-            print(filterObject?.openNow)
-            print(filterObject?.price)
-        }
-    
-    }
     
 
 
@@ -94,10 +84,10 @@ class HomeViewController: UIViewController {
     
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! FilterViewController
-        destinationVC.delegate = self
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let destinationVC = segue.destination as! FilterViewController
+//        destinationVC.delegate = self
+//    }
 }
 
 
@@ -475,9 +465,9 @@ extension HomeViewController: UISearchBarDelegate {
 
 
 
-//MARK:: Recieve Filter
-extension HomeViewController: recieveFilterProtocol{
-    func setData(filterRecieved: FilterObject) {
-        filterObject = filterRecieved
-    }
-}
+////MARK:: Recieve Filter
+//extension HomeViewController: recieveFilterProtocol{
+//    func setData(filterRecieved: FilterObject) {
+//        filterObject = filterRecieved
+//    }
+//}

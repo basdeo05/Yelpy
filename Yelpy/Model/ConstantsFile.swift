@@ -8,4 +8,10 @@
 import Foundation
 struct K {
     let homeToFilter = "homeToFilter"
+    let oneMileFilter = "OneMileFilter"
+    let threeMileFilter = "ThreeMileFilter"
+    let fiveMileFilter = "FiveMileFilter"
+    let openNowFilter = "OpenNowFilter"
+    let priceFilter = "PriceFilter"
+    let hasFilterBeenApplied = "HasFilterBeenApplied"
 }
