@@ -40,6 +40,16 @@ class HomeViewController: UIViewController {
     
     }
     
+
+
+    
+    
+    
+    
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,14 +71,28 @@ class HomeViewController: UIViewController {
         
         //register custom cell with tableView
         tableView.register(UINib(nibName: "BusinessCell", bundle: nil), forCellReuseIdentifier: "BusinessCell")
-        
-        
-        
     }
+    
+    
+    
+    
+    
+    
     
     @IBAction func filterButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: k.homeToFilter, sender: self)
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! FilterViewController
@@ -76,6 +100,18 @@ class HomeViewController: UIViewController {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+//MARK:: Location Manager
 //get current user location
 extension HomeViewController: CLLocationManagerDelegate {
     
@@ -98,6 +134,23 @@ extension HomeViewController: CLLocationManagerDelegate {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//MARK:: TableView
 //customize the table view
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -143,15 +196,41 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.color = UIColor.darkGray
+        spinner.hidesWhenStopped = true
+        tableView.tableFooterView = spinner
 
         //print (indexPath.row)
         if (indexPath.row  == homeBrain.allBusiness.count - 1 && shouldContinousScroll == true) {
-            homeBrain.numberOfBusinessToDisplay += 5
-            homeBrain.perfromApiReqest(lattitude: stringLat, longtitude: stringLon)
+            
+            spinner.startAnimating()
+            homeBrain.loadMoreBusiness(Long: stringLon, Latt: stringLat) {
+                spinner.stopAnimating()
+                }
             }
 
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
@@ -159,6 +238,21 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//MARK: HOMEBRAIN Protocol
 //delegates to pass data from home brain
 extension HomeViewController: HomeBrainDelegate {
     func updateUI (_ homeBrain: HomeBrain) {
@@ -169,10 +263,33 @@ extension HomeViewController: HomeBrainDelegate {
     }
     
     func didFailWithError(error: Error) {
-        print ("There was an error !")
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.shouldContinousScroll = false
+            self.homeBrain.numberOfBusinessToDisplay = self.homeBrain.allBusiness.count
+            print (self.homeBrain.numberOfBusinessToDisplay)
+        }
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//MARK:: Search Bar
 extension HomeViewController: UISearchBarDelegate {
     
     //Search button clicked function
@@ -317,6 +434,29 @@ extension HomeViewController: UISearchBarDelegate {
     
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//MARK:: Recieve Filter
 extension HomeViewController: recieveFilterProtocol{
     func setData(filterRecieved: FilterObject) {
         filterObject = filterRecieved

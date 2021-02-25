@@ -5,7 +5,7 @@
 //  Created by Richard Basdeo on 2/17/21.
 //
 
-import Foundation
+import UIKit
 
 protocol HomeBrainDelegate {
     func updateUI (_ homeBrain: HomeBrain)
@@ -83,6 +83,19 @@ class HomeBrain {
         }
         catch {
             print ("There was an error decoding the data: \(error)")
+            delegate?.didFailWithError(error: error)
+            return
         }
+    }
+    
+    
+    /*
+     Completion Handler:
+     The result will return an array of business Objects otherwise will return an error
+     */
+    func loadMoreBusiness(Long: String, Latt: String, completion: () -> ()) {
+        numberOfBusinessToDisplay += 10
+        perfromApiReqest(lattitude: Latt, longtitude: Long)
+
     }
 }
