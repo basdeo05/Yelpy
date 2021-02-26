@@ -10,9 +10,9 @@ import CoreLocation
 import AlamofireImage
 
 //Creating protocol to pass data between viewControllers using delegation
-//protocol recieveFilterProtocol {
-//    func setData(filterRecieved: FilterObject)
-//}
+protocol recieveFilterProtocol {
+    func UpdateUI()
+}
 
 class HomeViewController: UIViewController {
 
@@ -68,6 +68,25 @@ class HomeViewController: UIViewController {
     
     
     
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     @IBAction func filterButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: k.homeToFilter, sender: self)
@@ -82,12 +101,10 @@ class HomeViewController: UIViewController {
     
     
     
-    
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let destinationVC = segue.destination as! FilterViewController
-//        destinationVC.delegate = self
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! FilterViewController
+        destinationVC.delegate = self
+    }
 }
 
 
@@ -466,8 +483,8 @@ extension HomeViewController: UISearchBarDelegate {
 
 
 ////MARK:: Recieve Filter
-//extension HomeViewController: recieveFilterProtocol{
-//    func setData(filterRecieved: FilterObject) {
-//        filterObject = filterRecieved
-//    }
-//}
+extension HomeViewController: recieveFilterProtocol{
+    func UpdateUI() {
+        homeBrain.perfromApiReqest(lattitude: stringLat, longtitude: stringLon)
+    }
+}

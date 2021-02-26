@@ -14,4 +14,5 @@ struct BusinessObject {
     let businessAlias: String
     let businessTitle: String
     let businessPhoneNumber: String
+    let businessDistance: Float
 }

@@ -64,13 +64,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="196" translatesAutoresizingMaskIntoConstraints="NO" id="EtK-DJ-v6k">
-                                <rect key="frame" x="10" y="50" width="370" height="630"/>
+                                <rect key="frame" x="10" y="50" width="370" height="575"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="144" translatesAutoresizingMaskIntoConstraints="NO" id="kOB-bf-nVR">
-                                        <rect key="frame" x="17.333333333333343" y="0.0" width="335.33333333333326" height="371"/>
+                                        <rect key="frame" x="17.333333333333343" y="0.0" width="335.33333333333326" height="316"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="t5Q-g2-2Wz">
-                                                <rect key="frame" x="37.666666666666686" y="0.0" width="260" height="196"/>
+                                                <rect key="frame" x="37.666666666666686" y="0.0" width="260" height="141"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUl-MK-sa1">
                                                         <rect key="frame" x="0.0" y="0.0" width="71.333333333333329" height="20.333333333333332"/>
@@ -79,7 +79,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="3LW-5D-ucI">
-                                                        <rect key="frame" x="106.33333333333336" y="0.0" width="153.66666666666663" height="196"/>
+                                                        <rect key="frame" x="106.33333333333336" y="0.0" width="153.66666666666663" height="141"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="56" translatesAutoresizingMaskIntoConstraints="NO" id="6tO-dj-MZB">
                                                                 <rect key="frame" x="0.0" y="0.0" width="153.66666666666666" height="31"/>
@@ -123,26 +123,12 @@
                                                                     </switch>
                                                                 </subviews>
                                                             </stackView>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xy7-Pa-vx5">
-                                                                <rect key="frame" x="0.0" y="165" width="153.66666666666666" height="31"/>
-                                                                <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open Now:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ap-Sd-FBC">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="84.666666666666671" height="31"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <nil key="highlightedColor"/>
-                                                                    </label>
-                                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="mg7-jJ-CFP">
-                                                                        <rect key="frame" x="104.66666666666666" y="0.0" width="51" height="31"/>
-                                                                    </switch>
-                                                                </subviews>
-                                                            </stackView>
                                                         </subviews>
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="YRn-rR-MJ6">
-                                                <rect key="frame" x="0.0" y="340" width="335.33333333333331" height="31"/>
+                                                <rect key="frame" x="0.0" y="285" width="335.33333333333331" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4R-Km-LBh">
                                                         <rect key="frame" x="0.0" y="0.0" width="43.333333333333336" height="31"/>
@@ -166,7 +152,7 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0z-kk-bjv">
-                                        <rect key="frame" x="140.66666666666666" y="567" width="89" height="63"/>
+                                        <rect key="frame" x="140.66666666666666" y="512" width="89" height="63"/>
                                         <color key="backgroundColor" red="0.7607843876" green="0.21568629149999999" blue="0.18039217590000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                         <state key="normal" title="Filter">
@@ -194,7 +180,6 @@
                     <connections>
                         <outlet property="fiveMileOutlet" destination="EO9-4F-vAP" id="M05-aO-b3O"/>
                         <outlet property="oneMileOutlet" destination="iIr-Bt-xF8" id="dhd-eq-cZC"/>
-                        <outlet property="openNowOutlet" destination="mg7-jJ-CFP" id="HVm-ex-XaI"/>
                         <outlet property="priceOutlet" destination="P8j-rB-Kz6" id="gKo-cm-o1A"/>
                         <outlet property="threeMileOutlet" destination="aLf-th-dSc" id="CKm-QU-zvR"/>
                     </connections>

@@ -35,19 +35,38 @@ class HomeBrain {
         var theURL = "https://api.yelp.com/v3/businesses/search?latitude=\(lattitude)&longitude=\(longtitude)&categories=restaurants&limit=\(numberOfBusinessToDisplay)"
         
         
-//        //check to see if filters are applied
-//        if (UserDefaults.standard.bool(forKey: k.hasFilterBeenApplied)){
-//
-//            //check to see if price filter
-//            if (UserDefaults.standard.integer(forKey: k.priceFilter) > 0){
-//                theURL += "&price=\(String(UserDefaults.standard.integer(forKey: k.priceFilter)))"
-//            }
-//
-//
-//
-//
-//
-//        }
+        //check to see if filters are applied
+        if (UserDefaults.standard.bool(forKey: k.hasFilterBeenApplied)){
+
+            //check to see if price filter
+            if (UserDefaults.standard.integer(forKey: k.priceFilter) > 0){
+                theURL += "&price=\(String(UserDefaults.standard.integer(forKey: k.priceFilter)))"
+                print(String(UserDefaults.standard.integer(forKey: k.priceFilter)))
+            }
+            
+            if (UserDefaults.standard.bool(forKey: k.fiveMileFilter)){
+                theURL += "&radius=8046"
+                print(5)
+            }
+            if (UserDefaults.standard.bool(forKey: k.fiveMileFilter) == false &&
+                    UserDefaults.standard.bool(forKey: k.threeMileFilter)){
+                theURL += "&radius=4828"
+                print(3)
+            }
+            if (UserDefaults.standard.bool(forKey: k.fiveMileFilter) == false &&
+                    UserDefaults.standard.bool(forKey: k.threeMileFilter) == false &&
+                    UserDefaults.standard.bool(forKey: k.fiveMileFilter)
+            ){
+                theURL += "&radius=1610"
+                print(1)
+            }
+            
+
+
+
+
+
+        }
         
         
         
@@ -119,9 +138,11 @@ class HomeBrain {
                     businessImage_url: object.image_url,
                     businessAlias: object.categories[0].alias.capitalized,
                     businessTitle: object.categories[0].title,
-                    businessPhoneNumber: object.phone)
+                    businessPhoneNumber: object.phone,
+                    businessDistance: object.distance)
                 
                 allBusiness.append(newObject)
+//                print ("\(object.name) : \(object.distance)")
             }
         }
         catch {

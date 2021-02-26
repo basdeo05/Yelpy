@@ -20,6 +20,7 @@ struct businesses: Codable {
     let image_url: String
     let categories: [categories]
     let phone: String
+    let distance: Float
 }
 
 struct categories: Codable {
