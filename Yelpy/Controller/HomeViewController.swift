@@ -383,9 +383,14 @@ extension HomeViewController: HomeBrainDelegate {
     func updateUI (_ homeBrain: HomeBrain) {
         
         DispatchQueue.main.async {
-            self.animateTable()
-            self.shouldBounce = false
-            self.filterButtonOutlet.setTitle("Filter Results", for: .normal)
+            if (self.shouldBounce){
+                self.animateTable()
+                self.filterButtonOutlet.setTitle("Filter Results", for: .normal)
+                self.shouldBounce = false
+            }
+            else {
+                self.tableView.reloadData()
+            }
         }
     }
     
