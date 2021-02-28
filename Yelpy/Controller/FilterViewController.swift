@@ -15,9 +15,7 @@ class FilterViewController: UIViewController {
      
     price:
      -1, 2, 3, 4 = $, $$, $$$, $$$$
-     
-    open_now:
-    boolean
+
     */
     
     @IBOutlet weak var oneMileOutlet: UISwitch!

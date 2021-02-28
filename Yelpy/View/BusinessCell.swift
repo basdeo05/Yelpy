@@ -15,6 +15,7 @@ class BusinessCell: UITableViewCell {
     @IBOutlet weak var numberOfReviewsLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
     @IBOutlet weak var busninessPictureImageView: UIImageView!
+    @IBOutlet weak var distanceLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -105,6 +105,67 @@ class HomeViewController: UIViewController {
         let destinationVC = segue.destination as! FilterViewController
         destinationVC.delegate = self
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    func animateTable (){
+        //reload table
+        tableView.reloadData()
+        
+        //get all visible cells
+        let visibleCells = tableView.visibleCells
+        
+        
+        //get tableViewHeight
+        let tableViewheight = tableView.bounds.size.height
+        
+        
+        //go through each cell and move it down to tableviewHeight
+        for cell in visibleCells {
+            cell.transform = CGAffineTransform(translationX: 0, y: tableViewheight)
+        }
+        
+        
+        //need to animate back to position
+        //need counter so to happens after one anther
+        var delayCounter = 0
+        for cell in visibleCells {
+            
+            
+            UIView.animate(withDuration: 1.0,
+                           delay: Double(delayCounter) * 0.05,
+                           usingSpringWithDamping: 0.5,
+                           initialSpringVelocity: 0,
+                           options: .curveEaseInOut) {
+                
+                
+                cell.transform = CGAffineTransform.identity
+                
+            }
+            delayCounter += 1
+        }
+    }
 }
 
 
@@ -200,6 +261,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.busninessPictureImageView.af.setImage(withURL: imageUrl)
         }
         
+        cell.distanceLabel.text = ("\(String(format: "%.2f", homeBrain.allBusiness[indexPath.row].businessDistance / 1610)) Miles")
+        
         return cell
     }
     
@@ -265,7 +328,7 @@ extension HomeViewController: HomeBrainDelegate {
     func updateUI (_ homeBrain: HomeBrain) {
         
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.animateTable()
         }
     }
     

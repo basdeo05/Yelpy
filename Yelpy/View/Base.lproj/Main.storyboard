@@ -64,13 +64,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="196" translatesAutoresizingMaskIntoConstraints="NO" id="EtK-DJ-v6k">
-                                <rect key="frame" x="10" y="50" width="370" height="575"/>
+                                <rect key="frame" x="10" y="50" width="370" height="696"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="144" translatesAutoresizingMaskIntoConstraints="NO" id="kOB-bf-nVR">
-                                        <rect key="frame" x="17.333333333333343" y="0.0" width="335.33333333333326" height="316"/>
+                                        <rect key="frame" x="17.333333333333343" y="0.0" width="335.33333333333326" height="435"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="t5Q-g2-2Wz">
-                                                <rect key="frame" x="37.666666666666686" y="0.0" width="260" height="141"/>
+                                                <rect key="frame" x="37.666666666666686" y="0.0" width="260" height="260"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUl-MK-sa1">
                                                         <rect key="frame" x="0.0" y="0.0" width="71.333333333333329" height="20.333333333333332"/>
@@ -128,7 +128,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="YRn-rR-MJ6">
-                                                <rect key="frame" x="0.0" y="285" width="335.33333333333331" height="31"/>
+                                                <rect key="frame" x="0.0" y="404" width="335.33333333333331" height="31"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4R-Km-LBh">
                                                         <rect key="frame" x="0.0" y="0.0" width="43.333333333333336" height="31"/>
@@ -152,8 +152,12 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0z-kk-bjv">
-                                        <rect key="frame" x="140.66666666666666" y="512" width="89" height="63"/>
+                                        <rect key="frame" x="140" y="631" width="90" height="65"/>
                                         <color key="backgroundColor" red="0.7607843876" green="0.21568629149999999" blue="0.18039217590000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="90" id="Fgb-0V-Jh4"/>
+                                            <constraint firstAttribute="height" constant="65" id="Tah-IV-4fO"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="42"/>
                                         <state key="normal" title="Filter">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -163,15 +167,13 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="H0z-kk-bjv" firstAttribute="top" secondItem="kOB-bf-nVR" secondAttribute="bottom" constant="196" id="Qei-vj-xD2"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="V8w-uo-64G"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="V8w-uo-64G" firstAttribute="trailing" secondItem="EtK-DJ-v6k" secondAttribute="trailing" constant="10" id="2Bx-6o-maw"/>
+                            <constraint firstItem="V8w-uo-64G" firstAttribute="bottom" secondItem="EtK-DJ-v6k" secondAttribute="bottom" constant="10" id="F9i-cS-dmc"/>
                             <constraint firstItem="EtK-DJ-v6k" firstAttribute="leading" secondItem="V8w-uo-64G" secondAttribute="leading" constant="10" id="wto-QY-95v"/>
                             <constraint firstItem="EtK-DJ-v6k" firstAttribute="top" secondItem="V8w-uo-64G" secondAttribute="top" constant="50" id="yb4-aK-SXb"/>
                         </constraints>
