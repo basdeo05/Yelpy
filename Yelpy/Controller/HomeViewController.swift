@@ -23,6 +23,11 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var filterButtonOutlet: UIButton!
+    var filterButtonOriginalHeight: CGFloat!
+    var filterButtonOriginalWidth: CGFloat!
+    var shouldBounce = true
+    
     
     var stringLon = ""
     var stringLat = ""
@@ -61,6 +66,43 @@ class HomeViewController: UIViewController {
         
         //register custom cell with tableView
         tableView.register(UINib(nibName: "BusinessCell", bundle: nil), forCellReuseIdentifier: "BusinessCell")
+        
+        //Get the original height and width of my button
+        filterButtonOriginalWidth = filterButtonOutlet.frame.width
+        filterButtonOriginalHeight = filterButtonOutlet.frame.height
+        
+        //make sure button is off screen so user dont see it
+        filterButtonOutlet.frame = CGRect(x: filterButtonOutlet.frame.origin.x + view.bounds.width,
+                                          y: filterButtonOutlet.frame.origin.y,
+                                          width: filterButtonOutlet.frame.width,
+                                          height: filterButtonOutlet.frame.height)
+        
+    }
+    
+    
+    
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //when the view appers start showing the button
+        UIView.animate(withDuration: 2,
+                       delay: 1,
+                       options: .curveEaseIn) {
+            
+            self.filterButtonOutlet.setTitle("Loading Data....", for: .normal)
+            self.filterButtonOutlet.frame = CGRect(x: (self.filterButtonOutlet.frame.origin.x - self.view.bounds.width),
+                                                   y: self.filterButtonOutlet.frame.origin.y,
+                                                   width: self.filterButtonOutlet.frame.width,
+                                                   height: self.filterButtonOutlet.frame.height)
+            
+            //Once the button is shown start making it bounce
+        } completion: { (_) in
+            
+            self.bouncingButton()
+        }
     }
     
     
@@ -69,19 +111,6 @@ class HomeViewController: UIViewController {
     
     
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -110,25 +139,10 @@ class HomeViewController: UIViewController {
     
     
     
+  
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    //give animation to tableView
     func animateTable (){
         //reload table
         tableView.reloadData()
@@ -153,7 +167,7 @@ class HomeViewController: UIViewController {
         for cell in visibleCells {
             
             
-            UIView.animate(withDuration: 1.0,
+            UIView.animate(withDuration: 2.0,
                            delay: Double(delayCounter) * 0.05,
                            usingSpringWithDamping: 0.5,
                            initialSpringVelocity: 0,
@@ -164,6 +178,47 @@ class HomeViewController: UIViewController {
                 
             }
             delayCounter += 1
+        }
+    }
+    
+    
+    
+    
+    //bounce the button
+    func bouncingButton () {
+        
+        
+        UIView.animate(withDuration: 0.4,
+                       delay: 0,
+                       usingSpringWithDamping: 0.2,
+                       initialSpringVelocity: 2,
+                       options: .curveEaseOut) {
+            
+            self.filterButtonOutlet.bounds = CGRect(x: self.filterButtonOutlet.bounds.origin.x - 50,
+                                               y: self.filterButtonOutlet.bounds.origin.y,
+                                               width: self.filterButtonOriginalWidth + 80,
+                                               height: self.filterButtonOriginalHeight)
+            
+        } completion: { (_) in
+            
+            
+            UIView.animate(withDuration: 0.4,
+                           delay: 0,
+                           usingSpringWithDamping: 0.2,
+                           initialSpringVelocity: 2,
+                           options: .curveEaseOut) {
+                
+                self.filterButtonOutlet.bounds = CGRect(x: self.filterButtonOutlet.bounds.origin.x + 50,
+                                                   y: self.filterButtonOutlet.bounds.origin.y,
+                                                   width: self.filterButtonOriginalWidth,
+                                                   height: self.filterButtonOriginalHeight)
+                
+            } completion: { (_) in
+                
+                if (self.shouldBounce){
+                    self.bouncingButton()
+                }
+            }
         }
     }
 }
@@ -329,6 +384,8 @@ extension HomeViewController: HomeBrainDelegate {
         
         DispatchQueue.main.async {
             self.animateTable()
+            self.shouldBounce = false
+            self.filterButtonOutlet.setTitle("Filter Results", for: .normal)
         }
     }
     

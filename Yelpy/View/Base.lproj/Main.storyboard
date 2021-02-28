@@ -47,6 +47,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Yelpy" id="20X-eg-tAD"/>
                     <connections>
+                        <outlet property="filterButtonOutlet" destination="bwY-YS-8Wx" id="ktC-wU-gJF"/>
                         <outlet property="searchBar" destination="Uq5-gl-WMQ" id="XKN-q2-9Zj"/>
                         <outlet property="tableView" destination="iik-Uz-ds2" id="wDk-gK-pbz"/>
                     </connections>
