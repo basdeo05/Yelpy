@@ -35,6 +35,8 @@ class HomeViewController: UIViewController {
     
     let k = K()
     
+    var shouldAnimate = true
+    
 
 
     
@@ -87,21 +89,23 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //when the view appers start showing the button
-        UIView.animate(withDuration: 2,
-                       delay: 1,
-                       options: .curveEaseIn) {
-            
-            self.filterButtonOutlet.setTitle("Loading Data....", for: .normal)
-            self.filterButtonOutlet.frame = CGRect(x: (self.filterButtonOutlet.frame.origin.x - self.view.bounds.width),
-                                                   y: self.filterButtonOutlet.frame.origin.y,
-                                                   width: self.filterButtonOutlet.frame.width,
-                                                   height: self.filterButtonOutlet.frame.height)
-            
-            //Once the button is shown start making it bounce
-        } completion: { (_) in
-            
-            self.bouncingButton()
+        if (shouldAnimate){
+            //when the view appers start showing the button
+            UIView.animate(withDuration: 2,
+                           delay: 1,
+                           options: .curveEaseIn) {
+                
+                self.filterButtonOutlet.setTitle("Loading Data....", for: .normal)
+                self.filterButtonOutlet.frame = CGRect(x: (self.filterButtonOutlet.frame.origin.x - self.view.bounds.width),
+                                                       y: self.filterButtonOutlet.frame.origin.y,
+                                                       width: self.filterButtonOutlet.frame.width,
+                                                       height: self.filterButtonOutlet.frame.height)
+                
+                //Once the button is shown start making it bounce
+            } completion: { (_) in
+                self.shouldAnimate = false
+                self.bouncingButton()
+            }
         }
     }
     
