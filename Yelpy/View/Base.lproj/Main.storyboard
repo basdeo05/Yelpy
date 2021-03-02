@@ -191,11 +191,13 @@
             </objects>
             <point key="canvasLocation" x="34" y="1727"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="GVJ-oR-tiQ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qSL-v4-wLm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="sjV-HE-TKi"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="tuningfork" catalog="system" id="sjV-HE-TKi">
+                        <color key="badgeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="icb-WY-OBh">
                         <rect key="frame" x="0.0" y="44" width="390" height="44"/>
@@ -214,21 +216,35 @@
             </objects>
             <point key="canvasLocation" x="34.782608695652179" y="93.75"/>
         </scene>
-        <!--Item-->
+        <!--Map-->
         <scene sceneID="Juu-cg-yWv">
             <objects>
-                <viewController id="bfA-Hk-Lju" sceneMemberID="viewController">
+                <viewController id="bfA-Hk-Lju" customClass="MapViewController" customModule="Yelpy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ICR-pK-NeT">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="l9e-x9-an8">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                            </mapView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="EcL-Lc-rPg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="l9e-x9-an8" firstAttribute="trailing" secondItem="EcL-Lc-rPg" secondAttribute="trailing" id="70l-dw-u0i"/>
+                            <constraint firstItem="l9e-x9-an8" firstAttribute="leading" secondItem="EcL-Lc-rPg" secondAttribute="leading" id="V30-YK-2Ab"/>
+                            <constraint firstItem="l9e-x9-an8" firstAttribute="top" secondItem="ICR-pK-NeT" secondAttribute="top" id="VKT-X7-6Up"/>
+                            <constraint firstAttribute="bottom" secondItem="l9e-x9-an8" secondAttribute="bottom" id="bUy-rj-QOS"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="m5H-uH-q1I"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="m5H-uH-q1I"/>
+                    <connections>
+                        <outlet property="mapView" destination="l9e-x9-an8" id="pAS-sh-ynM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gIJ-QK-In3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1160" y="123"/>
+            <point key="canvasLocation" x="1160" y="122.98578199052132"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="F66-mo-8GL">
@@ -238,6 +254,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.7607843876" green="0.21568629149999999" blue="0.18039217590000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBar>
                     <connections>
                         <segue destination="qSL-v4-wLm" kind="relationship" relationship="viewControllers" id="fqh-uw-3E8"/>
@@ -250,6 +267,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="map" catalog="system" width="128" height="110"/>
+        <image name="tuningfork" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
