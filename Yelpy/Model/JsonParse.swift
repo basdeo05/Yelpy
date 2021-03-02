@@ -21,9 +21,15 @@ struct businesses: Codable {
     let categories: [categories]
     let phone: String
     let distance: Float
+    let coordinates : coordinates
 }
 
 struct categories: Codable {
     let alias: String
     let title: String
+}
+
+struct coordinates: Codable {
+    let latitude: Float
+    let longitude: Float
 }

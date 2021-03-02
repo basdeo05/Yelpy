@@ -6,12 +6,12 @@
 //
 
 import UIKit
+import MapKit
 
 protocol HomeBrainDelegate {
     func updateUI (_ homeBrain: HomeBrain)
     func didFailWithError (error: Error)
 }
-
 
 class HomeBrain {
     
@@ -25,6 +25,7 @@ class HomeBrain {
     
     //delegate
     var delegate: HomeBrainDelegate?
+    
     
     var numberOfBusinessToDisplay = 20
     
@@ -60,12 +61,6 @@ class HomeBrain {
                 theURL += "&radius=1610"
                 print(1)
             }
-            
-
-
-
-
-
         }
         
         
@@ -139,7 +134,9 @@ class HomeBrain {
                     businessAlias: object.categories[0].alias.capitalized,
                     businessTitle: object.categories[0].title,
                     businessPhoneNumber: object.phone,
-                    businessDistance: object.distance)
+                    businessDistance: object.distance,
+                    businessLatitude: object.coordinates.latitude,
+                    businessLongitude: object.coordinates.longitude)
                 
                 allBusiness.append(newObject)
 //                print ("\(object.name) : \(object.distance)")
@@ -161,5 +158,17 @@ class HomeBrain {
         numberOfBusinessToDisplay += 10
         perfromApiReqest(lattitude: Latt, longtitude: Long)
 
+    }
+    
+    func getMapLocations() -> [CLLocationCoordinate2D]{
+        
+        var temp = [CLLocationCoordinate2D]()
+        for business in allBusiness {
+            let newCoordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(business.businessLatitude), longitude: CLLocationDegrees(business.businessLongitude))
+            
+            temp.append(newCoordinate)
+        }
+        
+        return temp
     }
 }
