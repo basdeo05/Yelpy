@@ -62,7 +62,6 @@ class HomeViewController: UIViewController {
             let lat = location.latitude
             stringLon = String(lon)
             stringLat = String(lat)
-            UserDefaults.standard.setValue(20, forKey: k.businessCount)
             homeBrain.perfromApiReqest(lattitude: stringLat, longtitude: stringLon)
         }
         else {
@@ -100,7 +99,7 @@ class HomeViewController: UIViewController {
         
         if (shouldAnimate){
             //when the view appers start showing the button
-            UIView.animate(withDuration: 0.5,
+            UIView.animate(withDuration: 1,
                            delay: 0,
                            options: .curveEaseIn) {
                 
@@ -180,7 +179,7 @@ class HomeViewController: UIViewController {
         for cell in visibleCells {
             
             
-            UIView.animate(withDuration: 2.0,
+            UIView.animate(withDuration: 4.0,
                            delay: Double(delayCounter) * 0.05,
                            usingSpringWithDamping: 0.5,
                            initialSpringVelocity: 0,
@@ -356,7 +355,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             spinner.startAnimating()
             homeBrain.loadMoreBusiness(Long: stringLon, Latt: stringLat){
                 spinner.stopAnimating()
-                UserDefaults.standard.set(homeBrain.numberOfBusinessToDisplay, forKey: k.businessCount)
                 }
             }
 
@@ -396,7 +394,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController: HomeBrainDelegate {
     func updateUI (_ homeBrain: HomeBrain) {
         
-        UserDefaults.standard.setValue(homeBrain.allBusiness.count, forKey: k.businessCount)
+        HomeBrain.sharedInstance.allBusiness = homeBrain.allBusiness
         DispatchQueue.main.async {
             if (self.shouldBounce){
                 self.animateTable()

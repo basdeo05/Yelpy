@@ -28,16 +28,16 @@ class MapViewController: UIViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         mapView.showsUserLocation = true
-        homeBrain.numberOfBusinessToDisplay = UserDefaults.standard.integer(forKey: k.businessCount)
-        print ("Business Count: \(homeBrain.numberOfBusinessToDisplay)")
+        homeBrain.allBusiness = HomeBrain.sharedInstance.allBusiness
         centerUserLocation()
+        updateMap()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        homeBrain.numberOfBusinessToDisplay = UserDefaults.standard.integer(forKey: k.businessCount)
-        print ("Business Count: \(homeBrain.numberOfBusinessToDisplay)")
+        homeBrain.allBusiness = HomeBrain.sharedInstance.allBusiness
         centerUserLocation()
+        updateMap()
     }
     
     func centerUserLocation() {
@@ -46,8 +46,26 @@ class MapViewController: UIViewController {
             let region = MKCoordinateRegion.init(center: location,
                                                  latitudinalMeters: zoomInRegion,
                                                  longitudinalMeters: zoomInRegion)
-            homeBrain.perfromApiReqest(lattitude: String(location.latitude), longtitude: String(location.longitude))
             mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    func updateMap() {
+        restaurantsCoordinates = homeBrain.getMapLocations()
+        var counter = 0
+        DispatchQueue.main.async {
+            self.mapView.removeAnnotations(self.mapView.annotations)
+        }
+        
+        for restaurant in restaurantsCoordinates {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = CLLocationCoordinate2D(latitude: restaurant.latitude,
+                                                           longitude: restaurant.longitude)
+            annotation.title = homeBrain.allBusiness[counter].businessName
+            counter += 1
+            DispatchQueue.main.async {
+                self.mapView.addAnnotation(annotation)
+            }
         }
     }
 }
@@ -70,7 +88,6 @@ extension MapViewController: HomeBrainDelegate {
             DispatchQueue.main.async {
                 self.mapView.addAnnotation(annotation)
             }
-            
         }
     }
     

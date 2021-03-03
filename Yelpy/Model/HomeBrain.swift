@@ -15,6 +15,7 @@ protocol HomeBrainDelegate {
 
 class HomeBrain {
     
+    static let sharedInstance = HomeBrain()
     let k = K()
     
     //my api key
