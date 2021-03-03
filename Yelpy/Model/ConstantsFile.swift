@@ -13,4 +13,5 @@ struct K {
     let fiveMileFilter = "FiveMileFilter"
     let priceFilter = "PriceFilter"
     let hasFilterBeenApplied = "HasFilterBeenApplied"
+    let businessCount = "BusinessCount"
 }

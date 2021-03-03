@@ -69,15 +69,4 @@ class FilterViewController: UIViewController {
         }
         dismiss(animated: true, completion: nil)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

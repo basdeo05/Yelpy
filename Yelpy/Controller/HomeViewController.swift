@@ -36,7 +36,6 @@ class HomeViewController: UIViewController {
     let k = K()
     
     var shouldAnimate = true
-    
 
 
     
@@ -58,8 +57,18 @@ class HomeViewController: UIViewController {
         //request permission from user to get thier location
         locationManager.requestWhenInUseAuthorization()
         
+        if let location = locationManager.location?.coordinate {
+            let lon = location.longitude
+            let lat = location.latitude
+            stringLon = String(lon)
+            stringLat = String(lat)
+            UserDefaults.standard.setValue(20, forKey: k.businessCount)
+            homeBrain.perfromApiReqest(lattitude: stringLat, longtitude: stringLon)
+        }
+        else {
         //get users current location
         locationManager.requestLocation()
+        }
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -91,8 +100,8 @@ class HomeViewController: UIViewController {
         
         if (shouldAnimate){
             //when the view appers start showing the button
-            UIView.animate(withDuration: 2,
-                           delay: 1,
+            UIView.animate(withDuration: 0.5,
+                           delay: 0,
                            options: .curveEaseIn) {
                 
                 self.filterButtonOutlet.setTitle("Loading Data....", for: .normal)
@@ -345,8 +354,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if (indexPath.row  == homeBrain.allBusiness.count - 1 && shouldContinousScroll == true) {
             
             spinner.startAnimating()
-            homeBrain.loadMoreBusiness(Long: stringLon, Latt: stringLat) {
+            homeBrain.loadMoreBusiness(Long: stringLon, Latt: stringLat){
                 spinner.stopAnimating()
+                UserDefaults.standard.set(homeBrain.numberOfBusinessToDisplay, forKey: k.businessCount)
                 }
             }
 
@@ -386,6 +396,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController: HomeBrainDelegate {
     func updateUI (_ homeBrain: HomeBrain) {
         
+        UserDefaults.standard.setValue(homeBrain.allBusiness.count, forKey: k.businessCount)
         DispatchQueue.main.async {
             if (self.shouldBounce){
                 self.animateTable()
