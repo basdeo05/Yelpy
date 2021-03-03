@@ -36,6 +36,8 @@ class HomeViewController: UIViewController {
     let k = K()
     
     var shouldAnimate = true
+    
+    var tappedBusiness: BusinessObject?
 
 
     
@@ -143,8 +145,24 @@ class HomeViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == k.homeToFilter){
         let destinationVC = segue.destination as! FilterViewController
         destinationVC.delegate = self
+        }
+       
+        
+        else if (segue.identifier == k.homeToDetail){
+            let destinationVC = segue.destination as! DetailViewController
+            destinationVC.businessChosen = tappedBusiness
+            
+            let userLong = Float(stringLon)
+            let userLat = Float(stringLat)
+            
+            if let long = userLong, let lat = userLat {
+                
+                destinationVC.userCoordinates = CLLocationCoordinate2D(latitude: CLLocationDegrees(lat), longitude: CLLocationDegrees(long))
+            }
+        }
     }
     
     
@@ -373,6 +391,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         searchBar.resignFirstResponder()
     }
     
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tappedBusiness = homeBrain.allBusiness[indexPath.row]
+        performSegue(withIdentifier: k.homeToDetail, sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 
@@ -476,6 +501,8 @@ extension HomeViewController: UISearchBarDelegate {
                 //set all business to business that match the result
                 homeBrain.allBusiness = tempArray
                 
+                HomeBrain.sharedInstance.allBusiness = homeBrain.allBusiness
+                
                 //stop continous scrolling because will onnly have a set results
                 shouldContinousScroll = false
                 
@@ -543,6 +570,8 @@ extension HomeViewController: UISearchBarDelegate {
                 
                 //set all business to business that match the result
                 homeBrain.allBusiness = tempArray
+                
+                HomeBrain.sharedInstance.allBusiness = homeBrain.allBusiness
                 
                 //stop continous scrolling because will onnly have a set results
                 shouldContinousScroll = false

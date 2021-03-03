@@ -22,6 +22,7 @@
 		DDA86FBE25DD9408001123F1 /* BusinessObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA86FBD25DD9408001123F1 /* BusinessObject.swift */; };
 		DDA86FC225DDB66E001123F1 /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA86FC025DDB66E001123F1 /* BusinessCell.swift */; };
 		DDA86FC325DDB66E001123F1 /* BusinessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA86FC125DDB66E001123F1 /* BusinessCell.xib */; };
+		DDED06F925EFEE1700A03D17 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED06F825EFEE1700A03D17 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		DDA86FBD25DD9408001123F1 /* BusinessObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessObject.swift; sourceTree = "<group>"; };
 		DDA86FC025DDB66E001123F1 /* BusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		DDA86FC125DDB66E001123F1 /* BusinessCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusinessCell.xib; sourceTree = "<group>"; };
+		DDED06F825EFEE1700A03D17 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				DD05504825DD85CB0069D612 /* HomeViewController.swift */,
 				DD709BCC25E70424006A36D6 /* FilterViewController.swift */,
 				DD2DF02325EEE9BA00D6C57F /* MapViewController.swift */,
+				DDED06F825EFEE1700A03D17 /* DetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDED06F925EFEE1700A03D17 /* DetailViewController.swift in Sources */,
 				DD709BD025E70486006A36D6 /* ConstantsFile.swift in Sources */,
 				DDA86FC225DDB66E001123F1 /* BusinessCell.swift in Sources */,
 				DDA86FBB25DD923D001123F1 /* JsonParse.swift in Sources */,
