@@ -66,30 +66,6 @@ class HomeBrain {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         //convert string url to actual url
         if let URL = URL(string: theURL){
             
@@ -137,7 +113,8 @@ class HomeBrain {
                     businessPhoneNumber: object.phone,
                     businessDistance: object.distance,
                     businessLatitude: object.coordinates.latitude,
-                    businessLongitude: object.coordinates.longitude)
+                    businessLongitude: object.coordinates.longitude,
+                    businessID: object.id)
                 
                 allBusiness.append(newObject)
 //                print ("\(object.name) : \(object.distance)")

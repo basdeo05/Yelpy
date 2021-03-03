@@ -17,4 +17,5 @@ struct BusinessObject {
     let businessDistance: Float
     let businessLatitude: Float
     let businessLongitude: Float
+    let businessID: String
 }

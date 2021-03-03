@@ -15,15 +15,26 @@ class DetailViewController: UIViewController {
     var userCoordinates: CLLocationCoordinate2D?
     @IBOutlet weak var tableView: UITableView!
     let k = K()
+    let detailBrain = DetailBrain()
+    var timer = Timer()
+    var counter = 0
+    var dataReturned = false
+    var photoString = ""
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if let business = businessChosen {
+            photoString = business.businessImage_url
+            detailBrain.url += business.businessID
+            detailBrain.performDetailApiRequest()
+        }
         tableView.delegate = self
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: "name_Review_Title_Image_TableViewCell", bundle: nil), forCellReuseIdentifier: k.titleCell)
+        detailBrain.delegate = self
+        
     }
     
     
@@ -55,6 +66,24 @@ class DetailViewController: UIViewController {
             return UIImage(named: "extra_large_0")!
         }
     }
+    
+    @objc func updateImage(){
+
+        if let photos = detailBrain.businessDetailObject?.businessPhotos {
+            if (counter == photos.count - 1) {
+                counter = 0
+                photoString = photos[counter]
+            }
+            else {
+                counter += 1
+                photoString = photos[counter]
+            }
+        }
+        tableView.reloadData()
+    }
+    
+    
+    
     
     
     
@@ -89,10 +118,17 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             cell.businessNameLabel.text = business!.businessName
             cell.starRatingImageView.image = returnStarRatingString(rating: business!.businessRating)
             cell.ratingCountLabel.text = String(business!.businessRating)
-            if let URL = URL(string: business!.businessImage_url){
-                cell.backgroundImage.af.setImage(withURL: URL)
-            }
             
+            if dataReturned == true{
+                if let URL = URL(string: photoString){
+                    cell.backgroundImage.af.setImage(withURL: URL)
+                }
+            }
+            else {
+                if let URL = URL(string: photoString){
+                    cell.backgroundImage.af.setImage(withURL: URL)
+                }
+            }
             returnCell = cell
         default:
             let cell = UITableViewCell()
@@ -101,5 +137,19 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         return returnCell
+    }
+}
+
+extension DetailViewController: HomeBrainDelegate{
+    func updateUI(_ homeBrain: HomeBrain) {
+        
+        dataReturned = true
+        DispatchQueue.main.async {
+            self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.updateImage), userInfo: nil, repeats: true)
+        }
+    }
+    
+    func didFailWithError(error: Error) {
+        print ("There was a error somewhere")
     }
 }

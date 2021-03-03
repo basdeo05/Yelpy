@@ -22,6 +22,7 @@ struct businesses: Codable {
     let phone: String
     let distance: Float
     let coordinates : coordinates
+    let id: String
 }
 
 struct categories: Codable {
