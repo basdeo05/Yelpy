@@ -15,4 +15,5 @@ struct K {
     let hasFilterBeenApplied = "HasFilterBeenApplied"
     let businessCount = "BusinessCount"
     let homeToDetail = "HomeToDetail"
+    let titleCell = "titleCell"
 }

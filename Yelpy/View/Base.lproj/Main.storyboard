@@ -15,14 +15,24 @@
                     <view key="view" contentMode="scaleToFill" id="kQX-9V-pE9">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iBm-Bg-mYd">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="761"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="5eu-UL-1e7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="0r6-gs-hdO"/>
+                    <connections>
+                        <outlet property="tableView" destination="iBm-Bg-mYd" id="YF1-p5-EAz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q6O-Xp-UnK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="802" y="1710"/>
+            <point key="canvasLocation" x="801.53846153846155" y="1709.7156398104264"/>
         </scene>
         <!--Yelpy-->
         <scene sceneID="tne-QT-ifu">

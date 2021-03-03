@@ -23,6 +23,8 @@
 		DDA86FC225DDB66E001123F1 /* BusinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA86FC025DDB66E001123F1 /* BusinessCell.swift */; };
 		DDA86FC325DDB66E001123F1 /* BusinessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDA86FC125DDB66E001123F1 /* BusinessCell.xib */; };
 		DDED06F925EFEE1700A03D17 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED06F825EFEE1700A03D17 /* DetailViewController.swift */; };
+		DDED06FD25EFF48700A03D17 /* name_Review_Title_Image_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDED06FB25EFF48700A03D17 /* name_Review_Title_Image_TableViewCell.swift */; };
+		DDED06FE25EFF48700A03D17 /* name_Review_Title_Image_TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DDED06FC25EFF48700A03D17 /* name_Review_Title_Image_TableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		DDA86FC025DDB66E001123F1 /* BusinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessCell.swift; sourceTree = "<group>"; };
 		DDA86FC125DDB66E001123F1 /* BusinessCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BusinessCell.xib; sourceTree = "<group>"; };
 		DDED06F825EFEE1700A03D17 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		DDED06FB25EFF48700A03D17 /* name_Review_Title_Image_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = name_Review_Title_Image_TableViewCell.swift; sourceTree = "<group>"; };
+		DDED06FC25EFF48700A03D17 /* name_Review_Title_Image_TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = name_Review_Title_Image_TableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +131,8 @@
 				DD05504A25DD85CB0069D612 /* Main.storyboard */,
 				DDA86FC025DDB66E001123F1 /* BusinessCell.swift */,
 				DDA86FC125DDB66E001123F1 /* BusinessCell.xib */,
+				DDED06FB25EFF48700A03D17 /* name_Review_Title_Image_TableViewCell.swift */,
+				DDED06FC25EFF48700A03D17 /* name_Review_Title_Image_TableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -201,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDED06FE25EFF48700A03D17 /* name_Review_Title_Image_TableViewCell.xib in Resources */,
 				DD05505125DD85CB0069D612 /* LaunchScreen.storyboard in Resources */,
 				DDA86FC325DDB66E001123F1 /* BusinessCell.xib in Resources */,
 				DD05504E25DD85CB0069D612 /* Assets.xcassets in Resources */,
@@ -266,6 +273,7 @@
 				DD05504925DD85CB0069D612 /* HomeViewController.swift in Sources */,
 				DD05504525DD85CB0069D612 /* AppDelegate.swift in Sources */,
 				DD05504725DD85CB0069D612 /* SceneDelegate.swift in Sources */,
+				DDED06FD25EFF48700A03D17 /* name_Review_Title_Image_TableViewCell.swift in Sources */,
 				DDA86FBE25DD9408001123F1 /* BusinessObject.swift in Sources */,
 				DD05505F25DD8A2A0069D612 /* HomeBrain.swift in Sources */,
 			);
