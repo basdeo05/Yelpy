@@ -41,7 +41,6 @@ class DetailViewController: UIViewController {
         tableView.register(UINib(nibName: "MapTableViewCell", bundle: nil), forCellReuseIdentifier: k.mapCell)
         
         detailBrain.delegate = self
-        
     }
     
     
@@ -86,19 +85,11 @@ class DetailViewController: UIViewController {
                 photoString = photos[counter]
             }
         }
-        //tableView.reloadData()
         tableView.beginUpdates()
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.reloadRows(at: [indexPath], with: .none)
         tableView.endUpdates()
     }
-    
-    
-    
-    
-    
-    
-    
 }
 
     
@@ -192,15 +183,25 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
                             cell.sundayLabel.text = "Sunday:"
                         }
                     }
-                    
                 }
-                
                 returnCell = cell
             }
         case 3:
             print ("I see case 3")
             let cell = tableView.dequeueReusableCell(withIdentifier: k.mapCell) as! MapTableViewCell
             cell.centerMap(userLocation: userCoordinates!)
+            
+            
+            if (dataReturned == true){
+                
+                let temp = CLLocationCoordinate2D(latitude: CLLocationDegrees(businessChosen!.businessLatitude)
+                                                  , longitude: CLLocationDegrees(businessChosen!.businessLongitude))
+                
+                cell.getDirections(userLocation: userCoordinates!,
+                                   restaurantLocation: temp)
+            }
+            
+            
             returnCell = cell
             
             
