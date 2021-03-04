@@ -13,9 +13,20 @@ struct yelpReturnedBusinessDetail: Codable {
     let location: location
     let photos: [String]
     let price: String
-    
+    let hours: [hours]
 }
 
 struct location: Codable {
     let display_address: [String]
+}
+
+struct hours: Codable {
+    let open: [open]
+}
+
+struct open: Codable {
+    let is_overnight: Bool
+    let start: String
+    let end: String
+    let day: Int
 }

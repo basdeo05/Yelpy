@@ -71,6 +71,7 @@ class HomeViewController: UIViewController {
         locationManager.requestLocation()
         }
         
+        tableView.backgroundColor = .white
         tableView.delegate = self
         tableView.dataSource = self
         homeBrain.delegate = self

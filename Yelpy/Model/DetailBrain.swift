@@ -53,7 +53,8 @@ class DetailBrain : HomeBrain {
                                                             businessPhone: decodedData.display_phone,
                                                             businessLocation: decodedData.location.display_address,
                                                             businessPhotos: decodedData.photos,
-                                                            businessPrice: decodedData.price)
+                                                            businessPrice: decodedData.price,
+                                                            businessHours: decodedData.hours)
             
             businessDetailObject = newBusinessDetailObject
         }

@@ -29,11 +29,17 @@ class DetailViewController: UIViewController {
             detailBrain.url += business.businessID
             detailBrain.performDetailApiRequest()
         }
+        tableView.backgroundColor = #colorLiteral(red: 1, green: 0.8323162198, blue: 0.6345977187, alpha: 1)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 150
         
         tableView.register(UINib(nibName: "name_Review_Title_Image_TableViewCell", bundle: nil), forCellReuseIdentifier: k.titleCell)
         tableView.register(UINib(nibName:"InformationTableViewCell", bundle: nil), forCellReuseIdentifier: k.informationCell)
+        tableView.register(UINib(nibName:"openAndCloseTableViewCell", bundle: nil), forCellReuseIdentifier: k.dateCell)
+        tableView.register(UINib(nibName: "MapTableViewCell", bundle: nil), forCellReuseIdentifier: k.mapCell)
+        
         detailBrain.delegate = self
         
     }
@@ -80,7 +86,11 @@ class DetailViewController: UIViewController {
                 photoString = photos[counter]
             }
         }
-        tableView.reloadData()
+        //tableView.reloadData()
+        tableView.beginUpdates()
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.reloadRows(at: [indexPath], with: .none)
+        tableView.endUpdates()
     }
     
     
@@ -95,7 +105,7 @@ class DetailViewController: UIViewController {
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -113,9 +123,13 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         
         var returnCell = UITableViewCell()
         
+        
+        
+        
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: k.titleCell) as! name_Review_Title_Image_TableViewCell
+            cell.backgroundColor = .white
             cell.businessNameLabel.text = business!.businessName
             cell.starRatingImageView.image = returnStarRatingString(rating: business!.businessRating)
             cell.ratingCountLabel.text = String(business!.businessRating)
@@ -133,6 +147,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             returnCell = cell
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: k.informationCell) as! InformationTableViewCell
+            cell.backgroundColor = .white
             
             if (dataReturned == true){
                 cell.typeLabel.text = "\(detailBrain.businessDetailObject!.businessPrice) ** \(business!.businessTitle)"
@@ -144,16 +159,72 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 returnCell = cell
             }
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: k.dateCell) as! openAndCloseTableViewCell
+            cell.backgroundColor = .white
+            if (dataReturned == true){
+                
+                for hours in detailBrain.businessDetailObject!.businessHours {
+                    
+                    for opens in hours.open {
+                        switch opens.day {
+                        case 0:
+                            cell.mondayLabel.text = "Monday: \(opens.start) - \(opens.end)"
+                        case 1:
+                            cell.tuesdayLabel.text = "Tuesday: \(opens.start) - \(opens.end)"
+                        case 2:
+                            cell.wednesdayLabel.text = "Wednesday: \(opens.start) - \(opens.end)"
+                        case 3:
+                            cell.thursdayLabel.text = "Thursday: \(opens.start) - \(opens.end)"
+                        case 4:
+                            cell.fridayLabel.text = "Friday: \(opens.start) - \(opens.end)"
+                        case 5:
+                            cell.saturdayLabel.text = "Saturday: \(opens.start) - \(opens.end)"
+                        case 6:
+                            cell.sundayLabel.text = "Sunday: \(opens.start) - \(opens.end)"
+                        default:
+                            cell.mondayLabel.text = "Monday:"
+                            cell.tuesdayLabel.text = "Tuesday:"
+                            cell.wednesdayLabel.text = "Wednesday:"
+                            cell.thursdayLabel.text = "Thursday:"
+                            cell.fridayLabel.text = "Friday:"
+                            cell.saturdayLabel.text = "Saturday:"
+                            cell.sundayLabel.text = "Sunday:"
+                        }
+                    }
+                    
+                }
+                
+                returnCell = cell
+            }
+        case 3:
+            print ("I see case 3")
+            let cell = tableView.dequeueReusableCell(withIdentifier: k.mapCell) as! MapTableViewCell
+            cell.centerMap(userLocation: userCoordinates!)
+            returnCell = cell
             
             
         default:
             let cell = UITableViewCell()
+            cell.backgroundColor = .white
             cell.textLabel?.text = "Not completed yet"
             return cell
         }
         
         return returnCell
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
+    {
+        let verticalPadding: CGFloat = 10
+
+        let maskLayer = CALayer()
+        //maskLayer.cornerRadius = 10    //if you want round edges
+        maskLayer.backgroundColor = UIColor.black.cgColor
+        maskLayer.frame = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width, height: cell.bounds.height).insetBy(dx: 0, dy: verticalPadding/2)
+        cell.layer.mask = maskLayer
+    }
+    
 }
 
 extension DetailViewController: HomeBrainDelegate{
@@ -161,6 +232,7 @@ extension DetailViewController: HomeBrainDelegate{
         
         dataReturned = true
         DispatchQueue.main.async {
+            self.tableView.reloadData()
             self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.updateImage), userInfo: nil, repeats: true)
         }
     }

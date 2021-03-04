@@ -12,4 +12,5 @@ struct BusinessDetailObject {
     let businessLocation: [String]
     let businessPhotos: [String]
     let businessPrice: String
+    let businessHours: [hours]
 }

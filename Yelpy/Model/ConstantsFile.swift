@@ -17,4 +17,6 @@ struct K {
     let homeToDetail = "HomeToDetail"
     let titleCell = "titleCell"
     let informationCell = "informationCell"
+    let dateCell = "dateCell"
+    let mapCell = "mapCell"
 }

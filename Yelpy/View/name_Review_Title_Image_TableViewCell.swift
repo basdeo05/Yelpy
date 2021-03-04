@@ -19,8 +19,8 @@ class name_Review_Title_Image_TableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        businessNameLabel.textColor = .white
-        ratingCountLabel.textColor = .white
+        businessNameLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        ratingCountLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         backgroundImage.layer.cornerRadius = 22
     }
 
