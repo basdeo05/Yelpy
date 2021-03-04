@@ -33,6 +33,7 @@ class DetailViewController: UIViewController {
         tableView.dataSource = self
         
         tableView.register(UINib(nibName: "name_Review_Title_Image_TableViewCell", bundle: nil), forCellReuseIdentifier: k.titleCell)
+        tableView.register(UINib(nibName:"InformationTableViewCell", bundle: nil), forCellReuseIdentifier: k.informationCell)
         detailBrain.delegate = self
         
     }
@@ -130,6 +131,21 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             returnCell = cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: k.informationCell) as! InformationTableViewCell
+            
+            if (dataReturned == true){
+                cell.typeLabel.text = "\(detailBrain.businessDetailObject!.businessPrice) ** \(business!.businessTitle)"
+                cell.phoneNumberLabel.text = "\(detailBrain.businessDetailObject!.businessPhone)"
+                cell.addressLabel.text = ""
+                for address in detailBrain.businessDetailObject!.businessLocation {
+                    cell.addressLabel.text! += "\(address)\n"
+                }
+                
+                returnCell = cell
+            }
+            
+            
         default:
             let cell = UITableViewCell()
             cell.textLabel?.text = "Not completed yet"

@@ -12,6 +12,7 @@ struct yelpReturnedBusinessDetail: Codable {
     let display_phone: String
     let location: location
     let photos: [String]
+    let price: String
     
 }
 

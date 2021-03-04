@@ -16,4 +16,5 @@ struct K {
     let businessCount = "BusinessCount"
     let homeToDetail = "HomeToDetail"
     let titleCell = "titleCell"
+    let informationCell = "informationCell"
 }

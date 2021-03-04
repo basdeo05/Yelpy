@@ -9,9 +9,14 @@ import UIKit
 
 class InformationTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var phoneNumberLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        contentView.layer.cornerRadius = 22
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

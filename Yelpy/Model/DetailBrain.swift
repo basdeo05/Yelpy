@@ -52,7 +52,8 @@ class DetailBrain : HomeBrain {
             let newBusinessDetailObject = BusinessDetailObject(business_Image: decodedData.image_url,
                                                             businessPhone: decodedData.display_phone,
                                                             businessLocation: decodedData.location.display_address,
-                                                            businessPhotos: decodedData.photos)
+                                                            businessPhotos: decodedData.photos,
+                                                            businessPrice: decodedData.price)
             
             businessDetailObject = newBusinessDetailObject
         }

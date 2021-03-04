@@ -11,4 +11,5 @@ struct BusinessDetailObject {
     let businessPhone: String
     let businessLocation: [String]
     let businessPhotos: [String]
+    let businessPrice: String
 }
