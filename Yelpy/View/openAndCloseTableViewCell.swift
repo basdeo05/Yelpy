@@ -22,6 +22,19 @@ class openAndCloseTableViewCell: UITableViewCell {
         // Initialization code
         contentView.layer.cornerRadius = 22
     }
+    
+    func convertTimeString(time: String) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        
+        var stringTime = String(time)
+        stringTime.insert(":", at: stringTime.index(stringTime.startIndex, offsetBy: 2))
+        let date = dateFormatter.date(from: stringTime)
+        
+        dateFormatter.dateFormat = "h:mm a"
+        return dateFormatter.string(from: date!)
+        
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

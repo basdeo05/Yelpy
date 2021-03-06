@@ -156,31 +156,30 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
             if (dataReturned == true){
                 
                 for hours in detailBrain.businessDetailObject!.businessHours {
-                    
                     for opens in hours.open {
                         switch opens.day {
                         case 0:
-                            cell.mondayLabel.text = "Monday: \(opens.start) - \(opens.end)"
+                            cell.mondayLabel.text = "\(cell.convertTimeString(time: opens.start)) - \(cell.convertTimeString(time: opens.end))"
                         case 1:
-                            cell.tuesdayLabel.text = "Tuesday: \(opens.start) - \(opens.end)"
+                            cell.tuesdayLabel.text = "\(cell.convertTimeString(time: opens.start)) - \(cell.convertTimeString(time: opens.end))"
                         case 2:
-                            cell.wednesdayLabel.text = "Wednesday: \(opens.start) - \(opens.end)"
+                            cell.wednesdayLabel.text = "\(cell.convertTimeString(time: opens.start)) - \(cell.convertTimeString(time: opens.end))"
                         case 3:
-                            cell.thursdayLabel.text = "Thursday: \(opens.start) - \(opens.end)"
+                            cell.thursdayLabel.text = "\(cell.convertTimeString(time: opens.start)) - \(cell.convertTimeString(time: opens.end))"
                         case 4:
-                            cell.fridayLabel.text = "Friday: \(opens.start) - \(opens.end)"
+                            cell.fridayLabel.text = "\(cell.convertTimeString(time: opens.start)) - \(cell.convertTimeString(time: opens.end))"
                         case 5:
-                            cell.saturdayLabel.text = "Saturday: \(opens.start) - \(opens.end)"
+                            cell.saturdayLabel.text = "\(cell.convertTimeString(time: opens.start)) - \(cell.convertTimeString(time: opens.end))"
                         case 6:
-                            cell.sundayLabel.text = "Sunday: \(opens.start) - \(opens.end)"
+                            cell.sundayLabel.text = "\(cell.convertTimeString(time: opens.start)) - \(cell.convertTimeString(time: opens.end))"
                         default:
-                            cell.mondayLabel.text = "Monday:"
-                            cell.tuesdayLabel.text = "Tuesday:"
-                            cell.wednesdayLabel.text = "Wednesday:"
-                            cell.thursdayLabel.text = "Thursday:"
-                            cell.fridayLabel.text = "Friday:"
-                            cell.saturdayLabel.text = "Saturday:"
-                            cell.sundayLabel.text = "Sunday:"
+                            cell.mondayLabel.text = "Closed:"
+                            cell.tuesdayLabel.text = "Closed:"
+                            cell.wednesdayLabel.text = "Closed:"
+                            cell.thursdayLabel.text = "Closed:"
+                            cell.fridayLabel.text = "Closed:"
+                            cell.saturdayLabel.text = "Closed:"
+                            cell.sundayLabel.text = "Closed:"
                         }
                     }
                 }

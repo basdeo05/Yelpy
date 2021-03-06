@@ -53,6 +53,8 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        searchBar.searchTextField.textColor = .black
+        
         //Set location delegate to self
         locationManager.delegate = self
         

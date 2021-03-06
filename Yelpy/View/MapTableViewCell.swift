@@ -90,14 +90,17 @@ class MapTableViewCell: UITableViewCell {
         //return the request
         return request
     }
+    
 }
+
 
 extension MapTableViewCell: MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let renderer = MKPolylineRenderer(overlay: overlay as! MKPolyline)
-        renderer.strokeColor = .blue
+        renderer.strokeColor = #colorLiteral(red: 0.4874047041, green: 0.882589519, blue: 0.8476431966, alpha: 1)
+        renderer.lineWidth = 6
         return renderer
     }
 }
