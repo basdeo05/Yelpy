@@ -10,12 +10,24 @@ import MapKit
 import CoreLocation
 
 class MapViewController: UIViewController {
-
+    
+    //outlet to mapView
     @IBOutlet weak var mapView: MKMapView!
+    
+    //create instance of locationManger
     let locationManager = CLLocationManager()
+    
+    //how much I want the map to zoom in
     let zoomInRegion:Double = 1000
+    
+    //holds all the coordinates of the restaurants that need to be displayed
+    //Will be populate later
     var restaurantsCoordinates = [CLLocationCoordinate2D]()
+    
+    //homebrain object
     let homeBrain = HomeBrain()
+    
+    //access to my constants file
     let k = K()
     
     
@@ -28,8 +40,14 @@ class MapViewController: UIViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         mapView.showsUserLocation = true
+        
+        //get all the restaurants in currently displayed on home page
         homeBrain.allBusiness = HomeBrain.sharedInstance.allBusiness
+        
+        //center map on user
         centerUserLocation()
+        
+        //show annotations of all the restaurants
         updateMap()
     }
     
@@ -41,7 +59,6 @@ class MapViewController: UIViewController {
     }
     
     func centerUserLocation() {
-        
         if let location = locationManager.location?.coordinate {
             let region = MKCoordinateRegion.init(center: location,
                                                  latitudinalMeters: zoomInRegion,

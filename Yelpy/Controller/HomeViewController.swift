@@ -39,15 +39,6 @@ class HomeViewController: UIViewController {
     
     var tappedBusiness: BusinessObject?
 
-
-    
-    
-    
-    
-    
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,10 +85,7 @@ class HomeViewController: UIViewController {
         
     }
     
-    
-    
-    
-    
+ 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -122,29 +110,11 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
-    
-    
-    
-    
 
-    
-    
-    
-    
-    
     
     @IBAction func filterButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: k.homeToFilter, sender: self)
     }
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -168,12 +138,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
-    
-    
-    
-  
-    
+
     
     //give animation to tableView
     func animateTable (){
@@ -213,8 +178,6 @@ class HomeViewController: UIViewController {
             delayCounter += 1
         }
     }
-    
-    
     
     
     //bounce the button
@@ -258,15 +221,6 @@ class HomeViewController: UIViewController {
 
 
 
-
-
-
-
-
-
-
-
-
 //MARK:: Location Manager
 //get current user location
 extension HomeViewController: CLLocationManagerDelegate {
@@ -289,21 +243,6 @@ extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //MARK:: TableView
@@ -355,14 +294,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         
         let spinner = UIActivityIndicatorView(style: .large)
@@ -382,14 +313,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
     }
@@ -402,18 +325,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -444,21 +355,6 @@ extension HomeViewController: HomeBrainDelegate {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -629,26 +525,6 @@ extension HomeViewController: UISearchBarDelegate {
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
