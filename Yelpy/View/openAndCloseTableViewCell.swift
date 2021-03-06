@@ -35,6 +35,33 @@ class openAndCloseTableViewCell: UITableViewCell {
         return dateFormatter.string(from: date!)
         
     }
+    
+    func labelText(start: String, end: String, day: Int) -> String {
+        var returnString = ""
+        let correctStartTime = convertTimeString(time: start)
+        let correctEndTime = convertTimeString(time: end)
+        
+        switch day {
+        case 0:
+            returnString = "\(correctStartTime) - \(correctEndTime)"
+        case 1:
+            returnString = "\(correctStartTime) - \(correctEndTime)"
+        case 2:
+            returnString = "\(correctStartTime) - \(correctEndTime)"
+        case 3:
+            returnString = "\(correctStartTime) - \(correctEndTime)"
+        case 4:
+            returnString = "\(correctStartTime) - \(correctEndTime)"
+        case 5:
+            returnString = "\(correctStartTime) - \(correctEndTime)"
+        case 6:
+            returnString = "\(correctStartTime) - \(correctEndTime)"
+        default:
+            returnString = "Closed"
+        }
+        
+        return returnString
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

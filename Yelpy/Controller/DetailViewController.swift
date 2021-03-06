@@ -11,70 +11,74 @@ import AlamofireImage
 
 class DetailViewController: UIViewController {
     
+    //Business tapped on by tableView
     var businessChosen: BusinessObject?
+    
+    //user coordinates from previous tableView
     var userCoordinates: CLLocationCoordinate2D?
+    
+    //outlet to tableView
     @IBOutlet weak var tableView: UITableView!
+    
+    //access to my constants firls
     let k = K()
+    
+    //instance of detail brain
     let detailBrain = DetailBrain()
+    
+    //instance of time to call update image function
     var timer = Timer()
+    
+    //counter to choose which image to displayer
     var counter = 0
+    
+    //Know when to update the tableView
     var dataReturned = false
+    
+    //String to determing which photo to use
     var photoString = ""
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //check to see if a business was segued correctly
         if let business = businessChosen {
+            
+            //get the original background image
             photoString = business.businessImage_url
+            
+            //update the detail brain the the restaurant ID i want to use for my api call
             detailBrain.url += business.businessID
+            
+            //perform api call
             detailBrain.performDetailApiRequest()
         }
+        
+        //some tableViewConfiguration
         tableView.backgroundColor = #colorLiteral(red: 1, green: 0.8323162198, blue: 0.6345977187, alpha: 1)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 150
         
+        //registering custome cells
         tableView.register(UINib(nibName: "name_Review_Title_Image_TableViewCell", bundle: nil), forCellReuseIdentifier: k.titleCell)
         tableView.register(UINib(nibName:"InformationTableViewCell", bundle: nil), forCellReuseIdentifier: k.informationCell)
         tableView.register(UINib(nibName:"openAndCloseTableViewCell", bundle: nil), forCellReuseIdentifier: k.dateCell)
         tableView.register(UINib(nibName: "MapTableViewCell", bundle: nil), forCellReuseIdentifier: k.mapCell)
         
+        
+        //setting this controller as the delegate to use homeBrainProtocol
         detailBrain.delegate = self
     }
     
     
-    
-    func returnStarRatingString (rating: Float) -> UIImage {
-        
-        switch rating {
-        case 0.0:
-            return UIImage(named: "extra_large_0")!
-        case 1.0:
-            return UIImage(named: "extra_large_1")!
-        case 1.5:
-            return UIImage(named: "extra_large_1_half")!
-        case 2.0:
-            return UIImage(named: "extra_large_2")!
-        case 2.5:
-            return UIImage(named: "extra_large_2_half")!
-        case 3.0:
-            return UIImage(named: "extra_large_3")!
-        case 3.5:
-            return UIImage(named: "extra_large_3_half")!
-        case 4.0:
-            return UIImage(named: "extra_large_4")!
-        case 4.5:
-            return UIImage(named: "extra_large_4_half")!
-        case 5.0:
-            return UIImage(named: "extra_large_5")!
-        default:
-            return UIImage(named: "extra_large_0")!
-        }
-    }
-    
+    //update image function
     @objc func updateImage(){
 
+        //make sure phot url string array is not nil
+        //if not update photo string with the new image
         if let photos = detailBrain.businessDetailObject?.businessPhotos {
             if (counter == photos.count - 1) {
                 counter = 0
@@ -85,6 +89,8 @@ class DetailViewController: UIViewController {
                 photoString = photos[counter]
             }
         }
+        
+        //I only want to reload the first cell not the whole tableView
         tableView.beginUpdates()
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.reloadRows(at: [indexPath], with: .none)
@@ -95,34 +101,43 @@ class DetailViewController: UIViewController {
     
 
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    //I only have 4 custom cells I want to display
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         4
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        //make sure I have a chosen business by unwrapping it
+        //If I dont create a cell telling user something went wrong.
         var business: BusinessObject?
-       
         if let aBusiness = businessChosen {
             business = aBusiness
         }
         else {
             let returnCell = UITableViewCell()
-            returnCell.textLabel?.text = "No business object passed"
+            returnCell.textLabel?.text = "Something went wrong"
             return returnCell
         }
         
+        //If I do have a business  create a return cell that will be set based on which cell is being shown
         var returnCell = UITableViewCell()
         
         
         
-        
         switch indexPath.row {
+        
+        /*
+         First cell
+         Set image, title, and ratings based on object passed through segue
+         If data has been returned update image with new URL
+         */
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: k.titleCell) as! name_Review_Title_Image_TableViewCell
-            cell.backgroundColor = .white
             cell.businessNameLabel.text = business!.businessName
-            cell.starRatingImageView.image = returnStarRatingString(rating: business!.businessRating)
+            cell.setStarRatingString(rating: business!.businessRating)
             cell.ratingCountLabel.text = String(business!.businessRating)
             
             if dataReturned == true{
@@ -136,6 +151,12 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
             returnCell = cell
+            
+        /*
+         Only if data has been returned update this cell
+         Update cell's label with data gotten back from api
+         */
+            
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: k.informationCell) as! InformationTableViewCell
             cell.backgroundColor = .white
@@ -150,6 +171,13 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 returnCell = cell
             }
+            
+            
+        /*
+         Only if data has been returned update this cell
+         Update open and close times with data from the api
+         */
+            
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: k.dateCell) as! openAndCloseTableViewCell
             cell.backgroundColor = .white
@@ -159,34 +187,46 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
                     for opens in hours.open {
                         switch opens.day {
                         case 0:
-                            cell.mondayLabel.text = "\(cell.convertTimeString(time: opens.start)) - \(cell.convertTimeString(time: opens.end))"
+                            cell.mondayLabel.text = cell.labelText(start: opens.start,
+                                                                   end: opens.end,
+                                                                   day: opens.day)
                         case 1:
-                            cell.tuesdayLabel.text = "\(cell.convertTimeString(time: opens.start)) - \(cell.convertTimeString(time: opens.end))"
+                            cell.tuesdayLabel.text = cell.labelText(start: opens.start,
+                                                                    end: opens.end,
+                                                                    day: opens.day)
                         case 2:
-                            cell.wednesdayLabel.text = "\(cell.convertTimeString(time: opens.start)) - \(cell.convertTimeString(time: opens.end))"
+                            cell.wednesdayLabel.text = cell.labelText(start: opens.start,
+                                                                      end: opens.end,
+                                                                      day: opens.day)
                         case 3:
-                            cell.thursdayLabel.text = "\(cell.convertTimeString(time: opens.start)) - \(cell.convertTimeString(time: opens.end))"
+                            cell.thursdayLabel.text = cell.labelText(start: opens.start,
+                                                                     end: opens.end,
+                                                                     day: opens.day)
                         case 4:
-                            cell.fridayLabel.text = "\(cell.convertTimeString(time: opens.start)) - \(cell.convertTimeString(time: opens.end))"
+                            cell.fridayLabel.text = cell.labelText(start: opens.start,
+                                                                   end: opens.end,
+                                                                   day: opens.day)
                         case 5:
-                            cell.saturdayLabel.text = "\(cell.convertTimeString(time: opens.start)) - \(cell.convertTimeString(time: opens.end))"
+                            cell.saturdayLabel.text = cell.labelText(start: opens.start,
+                                                                     end: opens.end,
+                                                                     day: opens.day)
                         case 6:
-                            cell.sundayLabel.text = "\(cell.convertTimeString(time: opens.start)) - \(cell.convertTimeString(time: opens.end))"
+                            cell.sundayLabel.text = cell.labelText(start: opens.start,
+                                                                   end: opens.end,
+                                                                   day: opens.day)
                         default:
-                            cell.mondayLabel.text = "Closed:"
-                            cell.tuesdayLabel.text = "Closed:"
-                            cell.wednesdayLabel.text = "Closed:"
-                            cell.thursdayLabel.text = "Closed:"
-                            cell.fridayLabel.text = "Closed:"
-                            cell.saturdayLabel.text = "Closed:"
-                            cell.sundayLabel.text = "Closed:"
+                            print("Error on certain day")
                         }
                     }
                 }
                 returnCell = cell
             }
+            
+            /*
+            Map cell
+         */
+            
         case 3:
-            print ("I see case 3")
             let cell = tableView.dequeueReusableCell(withIdentifier: k.mapCell) as! MapTableViewCell
             cell.centerMap(userLocation: userCoordinates!)
             
@@ -199,11 +239,12 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.getDirections(userLocation: userCoordinates!,
                                    restaurantLocation: temp)
             }
-            
-            
             returnCell = cell
             
             
+            /*
+         Default cell
+         */
         default:
             let cell = UITableViewCell()
             cell.backgroundColor = .white
@@ -213,6 +254,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         
         return returnCell
     }
+    
+    //some spacing for cells
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath)
     {
@@ -227,16 +270,23 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+
+//Data is returned from api request
 extension DetailViewController: HomeBrainDelegate{
     func updateUI(_ homeBrain: HomeBrain) {
         
+        //When reloading tableView let it know that now certain data is available
         dataReturned = true
+        
+        //update the tableView
+        //start timer to start chaing the images
         DispatchQueue.main.async {
             self.tableView.reloadData()
             self.timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.updateImage), userInfo: nil, repeats: true)
         }
     }
     
+    //should create an alert here to tell user something went wrong
     func didFailWithError(error: Error) {
         print ("There was a error somewhere")
     }
