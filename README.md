@@ -3,5 +3,5 @@ Yelp clone app. Features include animations, filtered search, custom tableViewCe
 
 
 #Animations & Endless Scrolling
+![giphy-2](https://user-images.githubusercontent.com/19720373/110536379-641b9380-80ef-11eb-97a1-a28245b76a5e.gif)
 
-<img src='https://media.giphy.com/media/sm6xLiDum4xztCc2X5/giphy.gif' title='Video Walkthrough' width=''/>
