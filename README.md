@@ -2,7 +2,7 @@
 Yelp clone app. Features include animations, filtered search, custom tableViewCells, and implmentation of mapkit to show user directions to restaurants.
 
 
-#Animations & Endless Scrolling
+# Animations & Endless Scrolling
 
 
 
