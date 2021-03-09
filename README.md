@@ -11,9 +11,13 @@ Yelp clone app. Features include animations, filtered search, custom tableViewCe
 
 ![giphy](https://user-images.githubusercontent.com/19720373/110536709-c7a5c100-80ef-11eb-81d1-c246b335fd97.gif)
 
-#Mapkit
+# Mapkit
 
 ![giphy-2](https://user-images.githubusercontent.com/19720373/110536897-fd4aaa00-80ef-11eb-8966-001c9d47b9ff.gif)
+
+# Detail Screen
+
+![giphy](https://user-images.githubusercontent.com/19720373/110537187-5b778d00-80f0-11eb-8343-4434b09f7512.gif)
 
 
 
